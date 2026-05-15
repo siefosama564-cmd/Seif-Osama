@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seif Osama — Graphic Designer</title>
+<meta name="description" content="Seif Osama — Graphic Designer. Precision in Logic. Excellence in Design.">
+<link rel="icon" type="image/png" href="SEIF OSAMA.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ════════ TOKENS ════════ */
+:root{
+  --bg:#030305;--bg2:#06060f;--bg3:#08081a;
+  --sf:rgba(255,255,255,.03);--sf2:rgba(255,255,255,.055);
+  --bd:rgba(0,112,255,.13);--bd2:rgba(0,112,255,.27);--bd3:rgba(0,112,255,.46);
+  --blue:#0070ff;--blue2:#3d9bff;--el:#60b3ff;
+  --glow:rgba(0,112,255,.34);--glow2:rgba(0,112,255,.16);
+  --text:#e8eeff;--mu:#7a8aaa;--dim:#3a4460;--wh:#ffffff;
+  --d:'Syne',system-ui,sans-serif;
+  --b:'Inter',system-ui,sans-serif;
+  --r:20px;--r2:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--b);overflow-x:hidden;cursor:none;line-height:1.6}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+::selection{background:rgba(0,112,255,.3);color:#fff}
+::-webkit-scrollbar{width:2px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:1px}
+
+/* ════════ CURSOR ════════ */
+#cd{position:fixed;width:5px;height:5px;border-radius:50%;background:var(--el);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 8px var(--el),0 0 16px rgba(96,179,255,.5)}
+#cr{position:fixed;width:34px;height:34px;border-radius:50%;border:1px solid rgba(0,112,255,.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s,border-color .15s}
+body.ch #cr{width:50px;height:50px;background:rgba(0,112,255,.07);border-color:rgba(0,112,255,.7);box-shadow:0 0 22px rgba(0,112,255,.22)}
+#sp{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--el));z-index:8500;box-shadow:0 0 10px var(--blue);transition:width .08s}
+
+/* ════════ LOADER ════════ */
+#loader{position:fixed;inset:0;z-index:8000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .9s ease .2s}
+body.loaded #loader{opacity:0;pointer-events:none}
+#llw{width:200px;animation:lrv 1.9s cubic-bezier(.22,1,.36,1) both}
+#llw img{width:100%;filter:drop-shadow(0 0 44px rgba(0,112,255,.75))}
+#lbt{width:140px;height:1px;background:rgba(255,255,255,.07);margin-top:46px;border-radius:1px;overflow:hidden}
+#lbf{height:100%;background:linear-gradient(90deg,var(--blue),var(--el));width:0;transition:width 1.8s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px var(--blue)}
+#llbl{margin-top:14px;font-family:var(--b);font-size:10px;letter-spacing:.36em;color:var(--dim);text-transform:uppercase}
+#lfb{display:none;text-align:center}
+@keyframes lrv{0%{opacity:0;transform:scale(.65) translateY(24px);filter:brightness(0)}50%{opacity:1;transform:scale(1.07);filter:brightness(1.6) drop-shadow(0 0 60px rgba(0,112,255,.95))}80%{transform:scale(.98);filter:brightness(1) drop-shadow(0 0 24px rgba(0,112,255,.6))}100%{opacity:1;transform:scale(1);filter:brightness(1) drop-shadow(0 0 16px rgba(0,112,255,.4))}}
+
+/* noise */
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.032'/%3E%3C/svg%3E");opacity:.5}
+
+/* ════════ NAV ════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:700;padding:18px 64px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s,border-color .4s}
+nav.sc{background:rgba(3,3,5,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--bd)}
+.nl{height:38px;width:auto;filter:drop-shadow(0 0 8px rgba(0,112,255,.4));transition:filter .3s}
+.nl:hover{filter:drop-shadow(0 0 18px rgba(0,112,255,.75))}
+.nav-links{display:flex;gap:38px;list-style:none}
+.nav-links a{font-size:12px;letter-spacing:.11em;color:var(--mu);transition:color .3s;font-weight:500;text-transform:uppercase}
+.nav-links a:hover{color:var(--wh)}
+.nc{padding:9px 24px;border-radius:100px;font-size:12px;font-weight:600;border:1px solid var(--bd2);background:rgba(0,112,255,.08);color:var(--el);cursor:pointer;transition:all .3s;letter-spacing:.06em}
+.nc:hover{background:rgba(0,112,255,.2);box-shadow:0 0 24px var(--glow);transform:translateY(-1px)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.ham span{width:22px;height:1.5px;background:var(--mu);display:block;transition:.3s}
+#mob{display:none;position:fixed;inset:0;background:rgba(3,3,5,.97);z-index:650;flex-direction:column;align-items:center;justify-content:center;gap:36px;backdrop-filter:blur(30px)}
+#mob a{font-family:var(--d);font-size:36px;font-weight:800;color:var(--mu);transition:color .2s}
+#mob a:hover{color:var(--wh)}
+
+/* ════════ LAYOUT ════════ */
+.wrap{max-width:1200px;margin:0 auto;padding:0 64px;position:relative;z-index:1}
+.sl{display:inline-flex;align-items:center;gap:12px;margin-bottom:14px;font-size:10px;letter-spacing:.4em;color:var(--el);text-transform:uppercase;font-weight:600}
+.sl::before{content:'';width:28px;height:1px;background:var(--el);box-shadow:0 0 6px var(--el)}
+.st{font-family:var(--d);font-size:clamp(2.6rem,5.5vw,4rem);font-weight:800;line-height:1.0;letter-spacing:-.025em;color:var(--wh);margin-bottom:20px}
+.gr{background:linear-gradient(135deg,#fff 20%,var(--blue2) 60%,var(--el) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.div{height:1px;background:linear-gradient(90deg,transparent,var(--blue),var(--el),transparent);margin:100px 0;opacity:.28}
+section{position:relative;z-index:1}
+.ai{opacity:0;transform:translateY(44px);transition:opacity .75s ease,transform .75s ease}
+.ai.v{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ════════ HERO ════════ */
+#hs{position:relative;overflow:hidden}
+#hero{min-height:100vh;display:flex;align-items:center;padding:130px 64px 90px;max-width:1200px;margin:0 auto;gap:72px;position:relative}
+.hero-glow1{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(0,112,255,.1),transparent 70%);right:-100px;top:50%;transform:translateY(-50%);pointer-events:none}
+.hero-glow2{position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(0,112,255,.06),transparent 70%);left:0;bottom:0;pointer-events:none}
+.hl{flex:1;min-width:0}
+.hbadge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border-radius:100px;border:1px solid var(--bd2);background:rgba(0,112,255,.06);font-size:11px;letter-spacing:.18em;color:var(--el);text-transform:uppercase;font-weight:600;margin-bottom:32px;animation:fu .8s .4s both}
+.hbadge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--el);box-shadow:0 0 8px var(--el);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+.hname{font-family:var(--d);font-size:clamp(3.8rem,9vw,7.5rem);font-weight:800;line-height:.9;letter-spacing:-.04em;color:var(--wh);animation:fu .85s .55s both;margin-bottom:20px}
+.hname .l2{background:linear-gradient(135deg,#b3d4ff 0%,var(--blue2) 40%,var(--el) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block}
+.hrole{font-size:clamp(.9rem,1.7vw,1.1rem);color:var(--mu);letter-spacing:.14em;text-transform:uppercase;font-weight:400;animation:fu .8s .7s both;margin-bottom:12px}
+.htag{font-family:var(--d);font-size:clamp(1rem,2vw,1.25rem);color:var(--el);font-weight:600;letter-spacing:.04em;animation:fu .8s .8s both;margin-bottom:28px;border-left:2px solid var(--blue);padding-left:16px}
+.hdesc{font-size:15.5px;line-height:1.9;color:var(--mu);max-width:490px;animation:fu .8s .9s both;margin-bottom:48px}
+.hbtns{display:flex;gap:14px;flex-wrap:wrap;animation:fu .8s 1.0s both}
+.bp{padding:15px 32px;border-radius:100px;background:linear-gradient(135deg,var(--blue),#2a85ff);color:#fff;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:all .3s;letter-spacing:.05em;display:inline-flex;align-items:center;gap:9px;box-shadow:0 6px 32px rgba(0,112,255,.42)}
+.bp:hover{transform:translateY(-2px);box-shadow:0 12px 44px rgba(0,112,255,.58);filter:brightness(1.08)}
+.bs{padding:14px 30px;border-radius:100px;border:1px solid var(--bd2);background:rgba(0,112,255,.05);color:var(--text);font-size:13px;font-weight:500;cursor:pointer;transition:all .3s;letter-spacing:.05em;display:inline-flex;align-items:center;gap:9px}
+.bs:hover{background:rgba(0,112,255,.12);border-color:var(--bd3);transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,112,255,.18)}
+.bo{padding:14px 28px;border-radius:100px;border:1px solid rgba(255,255,255,.1);background:transparent;color:var(--mu);font-size:13px;font-weight:500;cursor:pointer;transition:all .3s;letter-spacing:.05em;display:inline-flex;align-items:center;gap:9px}
+.bo:hover{border-color:rgba(255,255,255,.26);color:var(--wh);transform:translateY(-2px)}
+/* Hero image */
+.hr{flex-shrink:0;width:420px;display:flex;align-items:center;justify-content:center;position:relative;animation:fi 1.2s 1s both}
+.orb1{position:absolute;width:400px;height:400px;border-radius:50%;border:1px solid rgba(0,112,255,.13);animation:rot 22s linear infinite}
+.orb1::before{content:'';position:absolute;top:-4px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:var(--el);box-shadow:0 0 14px var(--el),0 0 28px rgba(0,112,255,.55)}
+.orb2{position:absolute;width:464px;height:464px;border-radius:50%;border:1px solid rgba(0,112,255,.06);animation:rot 35s linear infinite reverse}
+.orb2::before{content:'';position:absolute;bottom:-4px;right:20%;width:5px;height:5px;border-radius:50%;background:rgba(0,112,255,.8);box-shadow:0 0 10px var(--blue)}
+@keyframes rot{to{transform:rotate(360deg)}}
+.hphoto{width:320px;height:380px;border-radius:28px;object-fit:cover;object-position:center top;position:relative;z-index:2;border:1px solid rgba(0,112,255,.25);box-shadow:0 0 60px rgba(0,112,255,.28),0 0 120px rgba(0,112,255,.12),0 32px 80px rgba(0,0,0,.6);animation:floatY 7s ease-in-out infinite}
+.hglow{position:absolute;width:320px;height:380px;border-radius:28px;background:radial-gradient(circle,rgba(0,112,255,.18),transparent 70%);z-index:1;animation:floatY 7s ease-in-out infinite}
+#hpfb{display:none;width:320px;height:380px;border-radius:28px;background:linear-gradient(135deg,#060a20,#0d1842,#152d6e);align-items:center;justify-content:center;border:1px solid rgba(0,112,255,.25);box-shadow:0 0 60px rgba(0,112,255,.28),0 32px 80px rgba(0,0,0,.6);animation:floatY 7s ease-in-out infinite;position:relative;z-index:2;flex-direction:column;gap:10px}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+@keyframes fu{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+.shint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:fi 1s 1.7s both}
+.str{width:18px;height:28px;border:1px solid rgba(255,255,255,.15);border-radius:9px;display:flex;justify-content:center;overflow:hidden}
+.sdot{width:2px;height:7px;background:var(--el);border-radius:2px;margin-top:6px;animation:sdotA 1.6s ease-in-out infinite}
+@keyframes sdotA{0%,100%{transform:translateY(0);opacity:1}80%{transform:translateY(11px);opacity:0}}
+.stxt{font-size:9px;letter-spacing:.3em;color:var(--dim);text-transform:uppercase}
+
+/* ════════ MARQUEE ════════ */
+.mw{border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:22px 0;overflow:hidden;position:relative}
+.mw::before,.mw::after{content:'';position:absolute;top:0;width:100px;height:100%;z-index:2;pointer-events:none}
+.mw::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.mw::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.mi{display:flex;width:max-content;animation:marq 28s linear infinite}
+.mt{display:flex;align-items:center;gap:12px;padding:0 36px;font-size:12px;color:var(--mu);font-weight:500;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.md{width:3px;height:3px;border-radius:50%;background:var(--el);flex-shrink:0;box-shadow:0 0 5px var(--el)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ════════ ABOUT ════════ */
+#about{padding:120px 0}
+.agrid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
+.aimg{position:relative}
+.aframe{width:100%;aspect-ratio:3/4;border-radius:28px;overflow:hidden;border:1px solid var(--bd2);box-shadow:0 0 60px var(--glow2),0 40px 80px rgba(0,0,0,.6);position:relative}
+.aframe img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(.95) saturate(1.1);transition:transform 6s ease}
+.aframe:hover img{transform:scale(1.04)}
+.aovl{position:absolute;inset:0;background:linear-gradient(to top,rgba(3,3,5,.65) 0%,transparent 50%);pointer-events:none}
+.abadge{position:absolute;bottom:-20px;right:-20px;background:rgba(8,8,26,.92);border:1px solid var(--bd2);backdrop-filter:blur(20px);border-radius:18px;padding:22px 26px;box-shadow:0 16px 48px rgba(0,0,0,.5)}
+.abn{font-family:var(--d);font-size:44px;font-weight:800;color:var(--wh);line-height:1}
+.abn em{color:var(--el);font-style:normal}
+.abl{font-size:11px;color:var(--mu);margin-top:4px;letter-spacing:.06em}
+.atxt{font-size:15px;line-height:1.9;color:var(--mu);margin-bottom:18px}
+.atxt strong{color:var(--text);font-weight:500}
+.astats{display:flex;gap:44px;margin:36px 0}
+.stn{font-family:var(--d);font-size:36px;font-weight:800;color:var(--wh);line-height:1}
+.stn em{color:var(--el);font-style:normal}
+.stl{font-size:11px;color:var(--mu);margin-top:4px;letter-spacing:.05em}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.tag{padding:7px 16px;border-radius:100px;border:1px solid var(--bd);background:var(--sf);font-size:11.5px;color:var(--mu);transition:all .3s;letter-spacing:.04em;cursor:default}
+.tag:hover{border-color:var(--bd3);color:var(--el);background:rgba(0,112,255,.06)}
+
+/* ════════ SKILLS BENTO ════════ */
+#skills{padding:120px 0}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:60px}
+.bc{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:28px;position:relative;overflow:hidden;cursor:default;transition:border-color .35s,transform .35s,box-shadow .35s;transform-style:preserve-3d}
+.bc::before{content:'';position:absolute;inset:0;border-radius:var(--r);background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(0,112,255,.14),transparent 55%);opacity:0;transition:opacity .4s;pointer-events:none}
+.bc:hover{border-color:rgba(0,112,255,.38);box-shadow:0 0 40px rgba(0,112,255,.14),0 16px 40px rgba(0,0,0,.4)}
+.bc:hover::before{opacity:1}
+.s32{grid-column:span 3;grid-row:span 2}
+.s3{grid-column:span 3}
+.s2{grid-column:span 2}
+.bbadge{position:absolute;top:18px;right:18px;padding:4px 10px;border-radius:100px;background:rgba(0,112,255,.1);border:1px solid rgba(0,112,255,.22);font-size:9px;color:var(--el);letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+.bicon{width:50px;height:50px;border-radius:14px;margin-bottom:20px;background:rgba(0,112,255,.1);border:1px solid rgba(0,112,255,.2);display:flex;align-items:center;justify-content:center;font-size:22px}
+.btit{font-family:var(--d);font-size:17px;font-weight:700;color:var(--wh);margin-bottom:8px;line-height:1.15}
+.s32 .btit{font-size:22px}
+.bdesc{font-size:13px;color:var(--mu);line-height:1.65}
+.s32 .bdesc{font-size:15px}
+.blv{display:flex;gap:4px;margin-top:16px}
+.ld{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.1);transition:.3s}
+.ld.on{background:var(--el);box-shadow:0 0 6px var(--el)}
+
+
+/* ════════ CERTS ════════ */
+#certs{padding:120px 0;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+.cw{overflow:hidden;position:relative;margin-top:56px}
+.cw::before,.cw::after{content:'';position:absolute;top:0;width:80px;height:100%;z-index:2;pointer-events:none}
+.cw::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.cw::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.ct{display:flex;gap:18px;overflow-x:auto;padding:6px 0 20px;scrollbar-width:none}
+.ct::-webkit-scrollbar{display:none}
+.cc{flex-shrink:0;width:320px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:32px;transition:all .4s;position:relative;overflow:hidden}
+.cc::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(0,112,255,.12),transparent 60%);opacity:0;transition:.4s}
+.cc:hover{border-color:rgba(0,112,255,.35);transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 30px rgba(0,112,255,.1)}
+.cc:hover::before{opacity:1}
+.ci{width:56px;height:56px;border-radius:16px;margin-bottom:20px;background:rgba(0,112,255,.1);border:1px solid rgba(0,112,255,.2);display:flex;align-items:center;justify-content:center;font-size:28px}
+.cn{font-family:var(--d);font-size:17px;font-weight:700;color:var(--wh);margin-bottom:5px;line-height:1.2}
+.ciss{font-size:12px;color:var(--el);margin-bottom:12px;font-weight:500}
+.cdesc{font-size:12.5px;color:var(--mu);line-height:1.65}
+.cbdg{position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;background:rgba(0,112,255,.1);border:1px solid rgba(0,112,255,.2);display:flex;align-items:center;justify-content:center;font-size:15px}
+.cnav{display:flex;justify-content:center;gap:10px;margin-top:24px}
+.cnb{width:40px;height:40px;border-radius:50%;background:var(--sf);border:1px solid var(--bd);color:var(--mu);cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;font-size:16px}
+.cnb:hover{border-color:var(--bd3);color:var(--el);box-shadow:0 4px 16px rgba(0,112,255,.15)}
+
+/* ════════ CONTACT ════════ */
+#contact{padding:120px 0}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.ch2{font-family:var(--d);font-size:clamp(2.8rem,6vw,5rem);font-weight:800;line-height:.95;letter-spacing:-.035em;color:var(--wh);margin-bottom:20px}
+.csub{font-size:15.5px;color:var(--mu);line-height:1.8;margin-bottom:42px;max-width:420px}
+.clinks{display:flex;flex-direction:column;gap:12px}
+.clink{display:flex;align-items:center;gap:16px;padding:16px 20px;border-radius:var(--r2);background:var(--sf);border:1px solid var(--bd);transition:all .3s;cursor:pointer}
+.clink:hover{border-color:var(--bd3);transform:translateX(7px);background:rgba(0,112,255,.04)}
+.clicon{width:42px;height:42px;border-radius:11px;background:rgba(0,112,255,.1);border:1px solid rgba(0,112,255,.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.cllbl{font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.12em}
+.clval{font-size:13.5px;color:var(--text);font-weight:500;margin-top:2px}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.sc2{padding:20px 14px;border-radius:var(--r);background:var(--sf);border:1px solid var(--bd);display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;transition:all .35s;text-align:center}
+.sc2:hover{border-color:var(--bd3);background:rgba(0,112,255,.06);transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,112,255,.18)}
+.si{font-size:24px;line-height:1}
+.sn{font-size:10.5px;color:var(--mu);letter-spacing:.1em;text-transform:uppercase}
+.cvblock{margin-top:28px;padding:24px;border-radius:var(--r);background:linear-gradient(135deg,rgba(0,112,255,.07),rgba(0,0,0,0));border:1px solid var(--bd2)}
+.cvlbl{font-size:10px;color:var(--dim);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.cvsub{font-size:13.5px;color:var(--mu);line-height:1.6;margin-bottom:18px}
+
+/* ════════ FOOTER ════════ */
+footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
+.flogo{height:32px;width:auto;filter:drop-shadow(0 0 6px rgba(0,112,255,.3))}
+.fcopy{font-size:12.5px;color:var(--dim)}
+.flinks{display:flex;gap:24px}
+.flinks a{font-size:12px;color:var(--dim);transition:color .3s;letter-spacing:.05em}
+.flinks a:hover{color:var(--el)}
+
+/* ════════ WHATSAPP ════════ */
+#wa{position:fixed;bottom:28px;right:28px;z-index:600;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c50);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 32px rgba(37,211,102,.4);transition:all .3s;animation:wap 3s infinite}
+#wa:hover{transform:scale(1.1);box-shadow:0 12px 44px rgba(37,211,102,.55)}
+@keyframes wap{0%,100%{box-shadow:0 8px 32px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,.3)}50%{box-shadow:0 8px 32px rgba(37,211,102,.4),0 0 0 12px rgba(37,211,102,0)}}
+
+/* ════════ RESPONSIVE ════════ */
+@media(max-width:1024px){
+  .bento{grid-template-columns:repeat(4,1fr)}
+  .s32{grid-column:span 2;grid-row:span 1}
+  .s3{grid-column:span 2}
+  .s2{grid-column:span 2}
+}
+@media(max-width:768px){
+  nav{padding:14px 24px}
+  .nav-links{display:none}
+  .ham{display:flex}
+  .wrap{padding:0 24px}
+  #hero{flex-direction:column-reverse;padding:100px 24px 60px;gap:36px;text-align:center;align-items:center}
+  .hero-glow1,.hero-glow2{display:none}
+  .hr{width:260px}
+  .hphoto{width:240px;height:290px}
+  .orb1{width:280px;height:280px}
+  .orb2{width:320px;height:320px}
+  .hbtns{justify-content:center}
+  .htag{text-align:left}
+  .agrid{grid-template-columns:1fr;gap:40px}
+  .abadge{bottom:-12px;right:12px}
+  .bento{grid-template-columns:1fr 1fr;gap:10px}
+  .s32,.s3,.s2{grid-column:span 1}
+  .wgrid{grid-template-columns:1fr}
+  .wmain{grid-column:span 1;grid-template-columns:1fr;min-height:auto}
+  .ff{grid-template-columns:1fr}
+  .fl{padding:40px 28px}
+  .fr{padding:24px 28px}
+  .cgrid{grid-template-columns:1fr;gap:40px}
+  footer{flex-direction:column;gap:18px;text-align:center;padding:28px 24px}
+  .sgrid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="cd"></div>
+<div id="cr"></div>
+<div id="sp" style="width:0"></div>
+
+<!-- ══════════ LOADER ══════════ -->
+<div id="loader">
+  <div id="llw">
+    <img src="SEIF OSAMA.png" id="loader-logo" alt="Seif Osama Logo">
+    -->
+    <img src="SEIF_OSAMA.png" alt="Seif Osama — Graphic Designer"
+         onerror="this.style.display='none';document.getElementById('lfb').style.display='block'">
+    <div id="lfb">
+    </div>
+  </div>
+  <div id="lbt"><div id="lbf"></div></div>
+  <div id="llbl">Loading Portfolio</div>
+</div>
+
+<!-- ══════════ NAV ══════════ -->
+<nav id="nav">
+     <div class="nav-left" style="display: flex; align-items: center; gap: 15px;">
+  <img src="SEIF OSAMA.png" class="nav-logo" alt="Seif Logo" style="height: 45px; width: auto; object-fit: contain;">
+  </span>
+</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certs">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://www.behance.net/siefosama77" target="_blank" class="nc">Behance ↗</a>
+  <div class="ham" onclick="tgMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div id="mob">
+  <a href="#about" onclick="tgMenu()">About</a>
+  <a href="#skills" onclick="tgMenu()">Skills</a>
+  <a href="#certs" onclick="tgMenu()">Certs</a>
+  <a href="#contact" onclick="tgMenu()">Contact</a>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="hs">
+  <canvas id="ptc" style="position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.55"></canvas>
+  <div id="hero">
+    <div class="hero-glow1"></div>
+    <div class="hero-glow2"></div>
+    <div class="hl">
+      <div class="hbadge">Available for Freelance</div>
+      <h1 class="hero-title fade-up" style="font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.1; letter-spacing: -0.02em; width: 100%; max-width: 100vw; overflow: visible;">
+  SEIF OSAMA <br>
+</h1>
+      <div class="hrole">Graphic Designer</div>
+      <div class="htag">"Precision in Logic. Excellence in Design."</div>
+      <p class="hdesc">I craft visual identities that communicate before words do — blending structured technical thinking with creative vision. From brand systems and packaging to 3D product renders.</p>
+      <div class="hbtns">
+        <a href="https://www.behance.net/siefosama77" target="_blank" class="bp">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/></svg>
+          View Behance
+        </a>
+        <a href="#contact" class="bs">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Contact Me
+        </a>
+        <a href="Seif-Osama-Fouad-FlowCV-Resume-20251116-7.pdf" target="_blank" class="bo">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
+      </div>
+    </div>
+    <div class="hr">
+      <div class="orb2"></div>
+      <div class="orb1"></div>
+      <div class="hglow"></div>
+      <!--
+        PROFILE PHOTO
+        Rename your photo file to: profile.jpg
+        (your upload was: 2330df23-...jfif → rename to profile.jpg)
+        Place it in the same folder as this HTML file.
+      -->
+      <img src="profile.jpg" class="hphoto" alt="Seif Osama"
+           onerror="this.style.display='none';document.getElementById('hpfb').style.display='flex'">
+      <div id="hpfb">
+        <div style="font-family:'Syne',sans-serif;font-size:60px;font-weight:800;background:linear-gradient(135deg,#fff,var(--el));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">SO</div>
+        <div style="font-size:10px;letter-spacing:.18em;color:#4a6a9a;text-transform:uppercase;text-align:center;padding:0 20px">Rename your photo<br>to profile.jpg</div>
+      </div>
+    </div>
+  </div>
+  <div class="shint">
+    <div class="str"><div class="sdot"></div></div>
+    <div class="stxt">Scroll</div>
+  </div>
+</section>
+
+<!-- ══════════ MARQUEE ══════════ -->
+<div class="mw">
+  <div class="mi">
+    <div class="mt"><div class="md"></div>Adobe Photoshop</div>
+    <div class="mt"><div class="md"></div>Adobe Illustrator</div>
+    <div class="mt"><div class="md"></div>Adobe InDesign</div>
+    <div class="mt"><div class="md"></div>Adobe Dimension</div>
+    <div class="mt"><div class="md"></div>Brand Identity</div>
+    <div class="mt"><div class="md"></div>Packaging Design</div>
+    <div class="mt"><div class="md"></div>Logo Systems</div>
+    <div class="mt"><div class="md"></div>3D Mockups</div>
+    <div class="mt"><div class="md"></div>Visual Storytelling</div>
+    <div class="mt"><div class="md"></div>UI Design</div>
+    <div class="mt"><div class="md"></div>Adobe Photoshop</div>
+    <div class="mt"><div class="md"></div>Adobe Illustrator</div>
+    <div class="mt"><div class="md"></div>Adobe InDesign</div>
+    <div class="mt"><div class="md"></div>Adobe Dimension</div>
+    <div class="mt"><div class="md"></div>Brand Identity</div>
+    <div class="mt"><div class="md"></div>Packaging Design</div>
+    <div class="mt"><div class="md"></div>Logo Systems</div>
+    <div class="mt"><div class="md"></div>3D Mockups</div>
+    <div class="mt"><div class="md"></div>Visual Storytelling</div>
+    <div class="mt"><div class="md"></div>UI Design</div>
+  </div>
+</div>
+
+<!-- ══════════ ABOUT ══════════ -->
+<section id="about">
+  <div class="wrap">
+    <div class="agrid">
+      <div class="aimg ai">
+        <div class="aframe">
+            <img src="profile.jpg" class="about-img-large" alt="Seif Osama">
+          -->
+          <img src="profile.jpg" alt="Seif Osama"
+               onerror="this.style.visibility='hidden'">
+          <div class="aovl"></div>
+        </div>
+        <div class="abadge">
+          <div class="abn">3<em>+</em></div>
+          <div class="abl">Years Designing</div>
+        </div>
+      </div>
+      <div>
+        <div class="sl ai d1">About Me</div>
+        <h2 class="st ai d1">Designer with a<br><span class="gr">Technical Edge</span></h2>
+        <p class="atxt ai d2">I'm <strong>Seif Osama</strong> — a graphic designer and <strong>Computer Science & Statistics student at Helwan University</strong>, graduating July 2026. Where most creatives approach design as pure art, I treat it as a system: structured, precise, measurable.</p>
+        <p class="atxt ai d3">My work spans <strong>brand identity, packaging, logo design</strong> and <strong>3D product visualization</strong>. Trained through Egypt's Digital Egypt Pioneers Initiative (DEPI), I've mastered the full Adobe suite — turning concepts into visual narratives that resonate and convert.</p>
+        <p class="atxt ai d4">My <strong>CS background</strong> means I read data, think algorithmically, and approach problems with rigor — a rare combination in the creative world. I don't just design beautifully. I design <em>intelligently</em>.</p>
+        <div class="astats ai">
+          <div><div class="stn">10<em>+</em></div><div class="stl">Projects Delivered</div></div>
+          <div><div class="stn">3<em>+</em></div><div class="stl">Certificates</div></div>
+          <div><div class="stn">4<em>+</em></div><div class="stl">Adobe Tools</div></div>
+        </div>
+        <div class="tags ai">
+          <span class="tag">Brand Identity</span><span class="tag">Image Manipulation</span>
+          <span class="tag">Social Media Designs</span><span class="tag">Packaging Design</span>
+          <span class="tag">Logo Design</span><span class="tag">AI Skills</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="div"></div></div>
+
+<!-- ══════════ SKILLS ══════════ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sl ai">Expertise</div>
+    <h2 class="st ai">Skills &<br><span class="gr">Capabilities</span></h2>
+    <div class="bento">
+      <div class="bc s32 ai" style="background:linear-gradient(135deg,rgba(0,112,255,.07),transparent)">
+        <div class="bbadge">Core</div>
+        <div class="bicon">🎨</div>
+        <div class="btit">Brand Identity Design</div>
+        <div class="bdesc">Crafting cohesive visual identities — from logo systems and typography hierarchies to full brand guidelines. Every touchpoint aligned, every element intentional. Built to be instantly recognizable and emotionally resonant across every format and scale.</div>
+        <div class="blv"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div>
+      </div>
+      <div class="bc s3 ai d1">
+        <div class="bicon">📦</div>
+        <div class="btit">Packaging Design</div>
+        <div class="bdesc">Structural and visual packaging that sells on shelf and screens. From dielines to 3D renders — packaging with purpose and precision.</div>
+        <div class="blv"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div></div>
+      </div>
+      <div class="bc s3 ai d2">
+        <div class="bicon">✏️</div>
+        <div class="btit">Logo Design</div>
+        <div class="bdesc">Timeless marks built on geometry, intent and precision. Scalable from favicon to billboard — vectors that carry meaning at every size.</div>
+        <div class="blv"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div>
+      </div>
+      <div class="bc s2 ai">
+        <div class="bicon" style="font-size:18px;font-weight:900;color:#31a8ff;font-family:sans-serif;background:rgba(49,168,255,.1)">Ps</div>
+        <div class="btit" style="font-size:15px">Adobe Photoshop</div>
+        <div class="bdesc" style="font-size:12px">Retouching, compositing, digital illustration, visual effects</div>
+        <div class="blv" style="margin-top:12px"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div>
+      </div>
+      <div class="bc s2 ai d1">
+        <div class="bicon" style="font-size:18px;font-weight:900;color:#ff9a00;font-family:sans-serif;background:rgba(255,154,0,.1)">Ai</div>
+        <div class="btit" style="font-size:15px">Adobe Illustrator</div>
+        <div class="bdesc" style="font-size:12px">Vector design, logos, branding assets, illustration systems</div>
+        <div class="blv" style="margin-top:12px"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div>
+      </div>
+      <div class="bc s2 ai d2">
+        <div class="bicon" style="font-size:18px;font-weight:900;color:#ff3366;font-family:sans-serif;background:rgba(255,51,102,.1)">Id</div>
+        <div class="btit" style="font-size:15px">Adobe InDesign</div>
+        <div class="bdesc" style="font-size:12px">Print layouts, editorial design, magazines, reports</div>
+        <div class="blv" style="margin-top:12px"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div></div>
+      </div>
+      <div class="bc s3 ai" style="background:linear-gradient(135deg,rgba(80,40,200,.07),transparent)">
+        <div class="bicon" style="font-size:18px;font-weight:900;color:#a080ff;font-family:sans-serif;background:rgba(160,128,255,.1)">Dn</div>
+        <div class="btit">Adobe Dimension · 3D Mockups</div>
+        <div class="bdesc">Photorealistic product visualizations and packaging renders. Lighting, materials, and depth — bringing 2D designs into immersive three-dimensional life.</div>
+        <div class="blv"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div></div>
+      </div>
+      <div class="bc s2 ai d1">
+        <div class="bicon">📱</div>
+        <div class="btit" style="font-size:15px">Social Media Design</div>
+        <div class="bdesc" style="font-size:12px">Scroll-stopping content — consistent, on-brand, built for engagement.</div>
+      </div>
+      <div class="bc s2 ai d2">
+        <div class="bicon">🤖</div>
+        <div class="btit" style="font-size:15px">AI-Assisted Front-End</div>
+        <div class="bdesc" style="font-size:12px">UI/UX design with AI-enhanced workflows — bridging design and implementation.</div>
+      </div>
+      <div class="bc s2 ai d3">
+        <div class="bicon">⚡</div>
+        <div class="btit" style="font-size:15px">Creative Problem Solving</div>
+        <div class="bdesc" style="font-size:12px">Translating complex briefs into elegant solutions through structured creative thinking.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="div"></div></div>
+
+<!-- ══════════ CERTS ══════════ -->
+<section id="certs">
+  <div class="wrap">
+    <div class="sl ai">Credentials</div>
+    <h2 class="st ai">Certificates &<br><span class="gr">Training</span></h2>
+  </div>
+  <div style="max-width:1200px;margin:0 auto;padding:0 64px" class="ai">
+    <div class="cw">
+      <div class="ct" id="ctrack">
+        <div class="cc">   
+          <img src="nvidia-logo-vert.svg" style="height: 32px; width: auto; filter: brightness(0) invert(1);" alt="NVIDIA">
+          <div class="cn">NVIDIA AI Certificate</div>
+          <div class="ciss">NVIDIA Corporation · ITI</div>
+          <div class="cdesc">Certificate of Competency in Artificial Intelligence — covering AI fundamentals, machine learning, deep learning, and practical model applications in real-world scenarios.</div>
+        </div>
+        <div class="cc" style="border-color:rgba(0,112,255,.2)">
+          <img src="DEBI-en.webp" style="height: 40px; width: auto; object-fit: contain;" alt="DEPI">
+          <div class="cn">Digital Egypt Pioneers Initiative</div>
+          <div class="ciss">DEPI · YAT Learning Center · Oct 2024 – Jun 2025</div>
+          <div class="cdesc">9-month Graphic Design Track in Maadi, Cairo — Photoshop, Illustrator, InDesign, Dimension, Freelancing Fundamentals, and English for Communication.</div>
+        </div>
+        <div class="cc">
+          <img src="ColoredLogo.svg" style="height: 38px; width: auto; object-fit: contain;" alt="ITI">
+          <div class="cn">ITI Professional Certificate</div>
+          <div class="ciss">Information Technology Institute · Egypt</div>
+          <div class="cdesc">Professional certification from Egypt's premier IT training institution, validating advanced technical and design competencies at national standard.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="div"></div></div>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="cgrid">
+      <div>
+        <div class="sl ai">Get In Touch</div>
+        <h2 class="ch2 ai">Let's Work<br><span class="gr">Together.</span></h2>
+        <p class="csub ai d1">Open to freelance projects, brand collaborations, and creative opportunities. Let's build something exceptional that lasts.</p>
+        <div class="clinks ai d2">
+          <a href="mailto:siefosama564@gmail.com" class="clink">
+  <div class="clicon"><img src="Gmail_icon_(2020).svg.png" style="width:20px; height:auto;" alt="Email"></div>
+  <div><div class="cllbl">Email</div><div class="clval">siefosama564@gmail.com</div></div>
+</a>
+<a href="https://wa.me/201156790032" target="_blank" class="clink">
+  <div class="clicon"><img src="062b83d4e3e10d2968fbf72b14cd24a7.jpg" style="width:20px; height:auto;" alt="WhatsApp"></div>
+  <div><div class="cllbl">WhatsApp</div><div class="clval">+20 115 679 0032</div></div>
+</a>
+<a href="https://www.linkedin.com/in/sief-osama-0184a8312" target="_blank" class="clink">
+  <div class="clicon"><img src="linkedin-logo-linkedin-icon-transparent-free-png.webp" style="width:20px; height:auto;" alt="LinkedIn"></div>
+  <div><div class="cllbl">LinkedIn</div><div class="clval">Sief Osama</div></div>
+</a>
+        </div>
+      </div>
+      <div class="ai d2">
+        <div style="font-size:11px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;margin-bottom:18px">Find me on</div>
+        <div class="sgrid">
+  <a href="https://www.behance.net/siefosama77" target="_blank" class="sc2">
+    <div class="si"><img src="behance-1-logo-png-transparent.png" style="width:24px; height:auto;" alt="Behance"></div>
+    <div class="sn">Behance</div>
+  </a>
+  <a href="https://www.linkedin.com/in/sief-osama-0184a8312" target="_blank" class="sc2">
+    <div class="si"><img src="linkedin-logo-linkedin-icon-transparent-free-png.webp" style="width:24px; height:auto;" alt="LinkedIn"></div>
+    <div class="sn">LinkedIn</div>
+  </a>
+  <a href="https://www.instagram.com/s.i.e.f_7" target="_blank" class="sc2">
+    <div class="si"><img src="497-4979581_instagram-icon-small-png-png-download-instagram-logo.png" style="width:24px; height:auto;" alt="Instagram"></div>
+    <div class="sn">Instagram</div>
+  </a>
+  <a href="https://www.facebook.com/share/18TyYBshKV/" target="_blank" class="sc2">
+    <div class="si"><img src="Facebook-Logo-social-media-emblem-transparent-PNG-image-jpg.webp" style="width:24px; height:auto;" alt="Facebook"></div>
+    <div class="sn">Facebook</div>
+  </a>
+  <a href="https://wa.me/201156790032" target="_blank" class="sc2">
+    <div class="si"><img src="062b83d4e3e10d2968fbf72b14cd24a7.jpg" style="width:24px; height:auto;" alt="WhatsApp"></div>
+    <div class="sn">WhatsApp</div>
+  </a>
+  <a href="mailto:siefosama564@gmail.com" class="sc2">
+    <div class="si"><img src="Gmail_icon_(2020).svg.png" style="width:24px; height:auto;" alt="Email"></div>
+    <div class="sn">Email</div>
+  </a>
+</div>
+        <div class="cvblock">
+          <div class="cvlbl">Download CV</div>
+          <div class="cvsub">Full resume with education, skills, training, and project experience.</div>
+          <a href="Seif-Osama-Fouad-FlowCV-Resume-20251116-7.pdf" target="_blank" class="bp" style="width:100%;justify-content:center;border-radius:14px">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download CV — PDF
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <!--
+    FULL LOGO in footer
+    File: SEIF_OSAMA.png
+  -->
+  <img class="flogo" src="SEIF OSAMA.png" alt="Seif Osama"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+  <span style="display:none;font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#fff">SEIF OSAMA</span>
+  <div class="fcopy">© 2025 Seif Osama . All rights reserved.</div>
+  <div class="flinks">
+    <a href="https://www.behance.net/siefosama77" target="_blank">Behance</a>
+    <a href="https://www.linkedin.com/in/sief-osama-0184a8312" target="_blank">LinkedIn</a>
+    <a href="mailto:siefosama564@gmail.com">Email</a>
+  </div>
+</footer>
+
+<!-- WhatsApp float -->
+<a id="wa" href="https://wa.me/201156790032" target="_blank">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+// LOADER
+window.addEventListener('DOMContentLoaded',()=>{
+  const f=document.getElementById('lbf');
+  setTimeout(()=>{f.style.width='100%'},80);
+  setTimeout(()=>{
+    document.body.classList.add('loaded');
+    setTimeout(()=>document.getElementById('loader').style.display='none',1100);
+  },2400);
+});
+
+// CURSOR
+const cd=document.getElementById('cd'),cr=document.getElementById('cr');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px'});
+(function tick(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(tick)})();
+document.querySelectorAll('a,button,.bc,.wc,.wmain,.cc,.sc2,.clink,.flnk').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
+});
+document.addEventListener('mouseleave',()=>{cd.style.opacity='0';cr.style.opacity='0'});
+document.addEventListener('mouseenter',()=>{cd.style.opacity='1';cr.style.opacity='1'});
+
+// SCROLL
+const sp=document.getElementById('sp'),nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  const p=window.scrollY/(document.body.scrollHeight-window.innerHeight)*100;
+  sp.style.width=p+'%';
+  nav.classList.toggle('sc',window.scrollY>50);
+  document.querySelectorAll('.ai').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight*.93)el.classList.add('v');
+  });
+},{passive:true});
+
+// INTERSECTION OBSERVER
+const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})},{threshold:.08});
+document.querySelectorAll('.ai').forEach(el=>obs.observe(el));
+
+// 3D TILT
+document.querySelectorAll('.bc,.wc').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    c.style.transform=`perspective(800px) rotateX(${(-y*8).toFixed(2)}deg) rotateY(${(x*8).toFixed(2)}deg) translateY(-3px)`;
+    c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+    c.style.setProperty('--my',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+  });
+  c.addEventListener('mouseleave',()=>c.style.transform='');
+});
+
+// MAGNETIC BUTTONS
+document.querySelectorAll('.bp,.bs').forEach(b=>{
+  b.addEventListener('mousemove',e=>{
+    const r=b.getBoundingClientRect();
+    const x=(e.clientX-r.left-r.width/2)*.22;
+    const y=(e.clientY-r.top-r.height/2)*.22;
+    b.style.transform=`translate(${x}px,${y}px) translateY(-2px)`;
+  });
+  b.addEventListener('mouseleave',()=>b.style.transform='');
+});
+
+// CERTS
+function scrollCerts(d){document.getElementById('ctrack').scrollBy({left:d,behavior:'smooth'})}
+
+// MOBILE MENU
+function tgMenu(){
+  const m=document.getElementById('mob');
+  m.style.display=m.style.display==='flex'?'none':'flex';
+}
+
+// PARTICLES
+(function(){
+  const c=document.getElementById('ptc');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  let W,H,pts=[];
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight}
+  resize();
+  window.addEventListener('resize',resize);
+  for(let i=0;i<55;i++){
+    pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.4+.4,a:Math.random()*.5+.1});
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1;
+      if(p.y<0||p.y>H)p.vy*=-1;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(0,112,255,${p.a})`;ctx.fill();
+    });
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<110){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(0,112,255,${.055*(1-d/110)})`;ctx.lineWidth=.5;ctx.stroke()}
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// STAGGERED SECTION REVEALS on scroll
+window.addEventListener('load',()=>{
+  document.querySelectorAll('.ai').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight*.95)el.classList.add('v');
+  });
+});
+</script>
+</body>
+</html>
