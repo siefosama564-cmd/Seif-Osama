@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" href="SEIF OSAMA.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ════════ TOKENS ════════ */
 :root{
@@ -18,8 +18,8 @@
   --blue:#0070ff;--blue2:#3d9bff;--el:#60b3ff;
   --glow:rgba(0,112,255,.34);--glow2:rgba(0,112,255,.16);
   --text:#e8eeff;--mu:#7a8aaa;--dim:#3a4460;--wh:#ffffff;
-  --d:'Syne',system-ui,sans-serif;
-  --b:'Inter',system-ui,sans-serif;
+  --d:'Syne','Space Grotesk',sans-serif;
+  --b:'Inter','Space Grotesk',sans-serif;
   --r:20px;--r2:14px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -131,7 +131,7 @@ section{position:relative;z-index:1}
 @keyframes marq{to{transform:translateX(-50%)}}
 
 /* ════════ ABOUT ════════ */
-#about{padding:120px 0}
+#about{padding:40px 0}
 .agrid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
 .aimg{position:relative}
 .aframe{width:100%;aspect-ratio:3/4;border-radius:28px;overflow:hidden;border:1px solid var(--bd2);box-shadow:0 0 60px var(--glow2),0 40px 80px rgba(0,0,0,.6);position:relative}
@@ -153,7 +153,7 @@ section{position:relative;z-index:1}
 .tag:hover{border-color:var(--bd3);color:var(--el);background:rgba(0,112,255,.06)}
 
 /* ════════ SKILLS BENTO ════════ */
-#skills{padding:120px 0}
+#skills{padding:40px 0}
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:60px}
 .bc{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:28px;position:relative;overflow:hidden;cursor:default;transition:border-color .35s,transform .35s,box-shadow .35s;transform-style:preserve-3d}
 .bc::before{content:'';position:absolute;inset:0;border-radius:var(--r);background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(0,112,255,.14),transparent 55%);opacity:0;transition:opacity .4s;pointer-events:none}
@@ -174,7 +174,7 @@ section{position:relative;z-index:1}
 
 
 /* ════════ CERTS ════════ */
-#certs{padding:120px 0;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+#certs{padding:40px 0;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
 .cw{overflow:hidden;position:relative;margin-top:56px}
 .cw::before,.cw::after{content:'';position:absolute;top:0;width:80px;height:100%;z-index:2;pointer-events:none}
 .cw::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
@@ -195,7 +195,7 @@ section{position:relative;z-index:1}
 .cnb:hover{border-color:var(--bd3);color:var(--el);box-shadow:0 4px 16px rgba(0,112,255,.15)}
 
 /* ════════ CONTACT ════════ */
-#contact{padding:120px 0}
+#contact{padding:40px 0}
 .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 .ch2{font-family:var(--d);font-size:clamp(2.8rem,6vw,5rem);font-weight:800;line-height:.95;letter-spacing:-.035em;color:var(--wh);margin-bottom:20px}
 .csub{font-size:15.5px;color:var(--mu);line-height:1.8;margin-bottom:42px;max-width:420px}
@@ -260,27 +260,65 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
   footer{flex-direction:column;gap:18px;text-align:center;padding:28px 24px}
   .sgrid{grid-template-columns:1fr 1fr}
 }
-/* 📱 MOBILE FIX */
-@media (max-width: 768px) {
-  #hero {
-    flex-direction: column-reverse !important;
-    padding: 100px 20px 60px !important;
-    text-align: center !important;
+/* 📱 تظبيط الموبايل النهائي - سيف أسامة 📱 */
+@media (max-width: 600px) {
+  /* 1. تقليل الفواصل الكبيرة */
+  section, #about, #skills, #certs, #contact {
+    padding: 40px 15px !important; /* قللنا المسافة من 120 لـ 40 */
   }
-  .hphoto {
-    width: 220px !important;
-    height: 270px !important;
+  
+  .div { margin: 30px 0 !important; } /* تقليل فواصل الخطوط المضيئة */
+
+  /* 2. تظبيط الشهادات عشان تبان إنها بتتحرك */
+  .ct {
+    display: flex !important;
+    gap: 15px !important;
+    overflow-x: auto !important;
+    padding-bottom: 20px !important;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
-  .hname {
-    font-size: 40px !important;
+
+  .cc {
+    flex: 0 0 85% !important; /* خليت الشهادة تاخد 85% بس عشان حتة من اللي بعدها تبان */
+    scroll-snap-align: center;
+    width: auto !important;
   }
-  .agrid {
-    grid-template-columns: 1fr !important;
-    gap: 30px !important;
+
+  /* تظبيط النصوص والصور */
+  h1, .st, .ch2 { font-size: 32px !important; text-align: center !important; }
+  p, .csub, .atxt { font-size: 15px !important; text-align: center !important; }
+  .hphoto { width: 200px !important; height: 250px !important; margin: 0 auto; }
+}
+/* 📱 تظبيط الموبايل النهائي - سيف أسامة 📱 */
+@media (max-width: 600px) {
+  /* 1. تقليل الفواصل الكبيرة */
+  section, #about, #skills, #certs, #contact {
+    padding: 40px 15px !important; /* قللنا المسافة من 120 لـ 40 */
   }
-  .bento {
-    grid-template-columns: 1fr !important;]
+  
+  .div { margin: 30px 0 !important; } /* تقليل فواصل الخطوط المضيئة */
+
+  /* 2. تظبيط الشهادات عشان تبان إنها بتتحرك */
+  .ct {
+    display: flex !important;
+    gap: 15px !important;
+    overflow-x: auto !important;
+    padding-bottom: 20px !important;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
+
+  .cc {
+    flex: 0 0 85% !important; /* خليت الشهادة تاخد 85% بس عشان حتة من اللي بعدها تبان */
+    scroll-snap-align: center;
+    width: auto !important;
+  }
+
+  /* تظبيط النصوص والصور */
+  h1, .st, .ch2 { font-size: 32px !important; text-align: center !important; }
+  p, .csub, .atxt { font-size: 15px !important; text-align: center !important; }
+  .hphoto { width: 200px !important; height: 250px !important; margin: 0 auto; }
 }
 </style>
 </head>
@@ -422,7 +460,7 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
         <p class="atxt ai d3">My work spans <strong>brand identity, packaging, logo design</strong> and <strong>3D product visualization</strong>. Trained through Egypt's Digital Egypt Pioneers Initiative (DEPI), I've mastered the full Adobe suite — turning concepts into visual narratives that resonate and convert.</p>
         <p class="atxt ai d4">My <strong>CS background</strong> means I read data, think algorithmically, and approach problems with rigor — a rare combination in the creative world. I don't just design beautifully. I design <em>intelligently</em>.</p>
         <div class="astats ai">
-          <div><div class="stn">10<em>+</em></div><div class="stl">Projects Delivered</div></div>
+          <div><div class="stn">10<em>+</em></div><div class="stl">Projects</div></div>
           <div><div class="stn">3<em>+</em></div><div class="stl">Certificates</div></div>
           <div><div class="stn">4<em>+</em></div><div class="stl">Adobe Tools</div></div>
         </div>
@@ -556,11 +594,11 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
   <div><div class="cllbl">Email</div><div class="clval">siefosama564@gmail.com</div></div>
 </a>
 <a href="https://wa.me/201156790032" target="_blank" class="clink">
-  <div class="clicon"><img src="062b83d4e3e10d2968fbf72b14cd24a7.jpg" style="width:20px; height:auto;" alt="WhatsApp"></div>
+  <div class="clicon"><img src="logo.png" style="width:20px; height:auto;" alt="WhatsApp"></div>
   <div><div class="cllbl">WhatsApp</div><div class="clval">+20 115 679 0032</div></div>
 </a>
 <a href="https://www.linkedin.com/in/sief-osama-0184a8312" target="_blank" class="clink">
-  <div class="clicon"><img src="linkedin-logo-linkedin-icon-transparent-free-png.webp" style="width:20px; height:auto;" alt="LinkedIn"></div>
+  <div class="clicon"><img src="linkedin.png" style="width:20px; height:auto;" alt="LinkedIn"></div>
   <div><div class="cllbl">LinkedIn</div><div class="clval">Sief Osama</div></div>
 </a>
         </div>
@@ -573,19 +611,19 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
     <div class="sn">Behance</div>
   </a>
   <a href="https://www.linkedin.com/in/sief-osama-0184a8312" target="_blank" class="sc2">
-    <div class="si"><img src="linkedin-logo-linkedin-icon-transparent-free-png.webp" style="width:24px; height:auto;" alt="LinkedIn"></div>
+    <div class="si"><img src="linkedin.png" style="width:24px; height:auto;" alt="LinkedIn"></div>
     <div class="sn">LinkedIn</div>
   </a>
   <a href="https://www.instagram.com/s.i.e.f_7" target="_blank" class="sc2">
-    <div class="si"><img src="497-4979581_instagram-icon-small-png-png-download-instagram-logo.png" style="width:24px; height:auto;" alt="Instagram"></div>
+    <div class="si"><img src="instagram.png" style="width:24px; height:auto;" alt="Instagram"></div>
     <div class="sn">Instagram</div>
   </a>
   <a href="https://www.facebook.com/share/18TyYBshKV/" target="_blank" class="sc2">
-    <div class="si"><img src="Facebook-Logo-social-media-emblem-transparent-PNG-image-jpg.webp" style="width:24px; height:auto;" alt="Facebook"></div>
+    <div class="si"><img src="facebook.png" style="width:24px; height:auto;" alt="Facebook"></div>
     <div class="sn">Facebook</div>
   </a>
   <a href="https://wa.me/201156790032" target="_blank" class="sc2">
-    <div class="si"><img src="062b83d4e3e10d2968fbf72b14cd24a7.jpg" style="width:24px; height:auto;" alt="WhatsApp"></div>
+    <div class="si"><img src="logo.png" style="width:24px; height:auto;" alt="WhatsApp"></div>
     <div class="sn">WhatsApp</div>
   </a>
   <a href="mailto:siefosama564@gmail.com" class="sc2">
