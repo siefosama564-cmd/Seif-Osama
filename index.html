@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" href="SEIF OSAMA.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ════════ TOKENS ════════ */
 :root{
@@ -18,9 +18,24 @@
   --blue:#0070ff;--blue2:#3d9bff;--el:#60b3ff;
   --glow:rgba(0,112,255,.34);--glow2:rgba(0,112,255,.16);
   --text:#e8eeff;--mu:#7a8aaa;--dim:#3a4460;--wh:#ffffff;
-  --d:'Syne','Space Grotesk',sans-serif;
-  --b:'Inter','Space Grotesk',sans-serif;
+  --d:'Syne','Plus Jakarta Sans',sans-serif;
+  --b:'Inter','Inter',sans-serif;
   --r:20px;--r2:14px;
+  /* تظبيط النعومة في الخط */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* إضافة نعومة إضافية لكل نصوص الموقع */
+body {
+    font-family: var(--b);
+    letter-spacing: -0.01em; /* تقليل المسافة بين الحروف بيخلي الخط يبان سموز أكتر */
+}
+
+h1, h2, h3, .st {
+    font-family: var(--d);
+    font-weight: 700;
+    letter-spacing: -0.03em; /* حركة احترافية جداً للـ Titles */
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
