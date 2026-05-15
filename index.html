@@ -260,6 +260,28 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
   footer{flex-direction:column;gap:18px;text-align:center;padding:28px 24px}
   .sgrid{grid-template-columns:1fr 1fr}
 }
+/* 📱 MOBILE FIX */
+@media (max-width: 768px) {
+  #hero {
+    flex-direction: column-reverse !important;
+    padding: 100px 20px 60px !important;
+    text-align: center !important;
+  }
+  .hphoto {
+    width: 220px !important;
+    height: 270px !important;
+  }
+  .hname {
+    font-size: 40px !important;
+  }
+  .agrid {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+  .bento {
+    grid-template-columns: 1fr !important;]
+  }
+}
 </style>
 </head>
 <body>
@@ -272,7 +294,6 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
 <div id="loader">
   <div id="llw">
     <img src="SEIF OSAMA.png" id="loader-logo" alt="Seif Osama Logo">
-    -->
     <img src="SEIF_OSAMA.png" alt="Seif Osama — Graphic Designer"
          onerror="this.style.display='none';document.getElementById('lfb').style.display='block'">
     <div id="lfb">
