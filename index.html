@@ -28,14 +28,13 @@
 
 /* إضافة نعومة إضافية لكل نصوص الموقع */
 body {
-    font-family: var(--b);
+    font-family: 'Inter', system-ui, sans-serif;
     letter-spacing: -0.01em; /* تقليل المسافة بين الحروف بيخلي الخط يبان سموز أكتر */
 }
 
-h1, h2, h3, .st {
-    font-family: var(--d);
-    font-weight: 700;
-    letter-spacing: -0.03em; /* حركة احترافية جداً للـ Titles */
+h1, h2, h3, h4, .section-title, .hero-zone h1 {
+  font-family: 'Syne', sans-serif;
+  letter-spacing: -0.02em;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -275,65 +274,95 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
   footer{flex-direction:column;gap:18px;text-align:center;padding:28px 24px}
   .sgrid{grid-template-columns:1fr 1fr}
 }
-/* 📱 تظبيط الموبايل النهائي - سيف أسامة 📱 */
-@media (max-width: 600px) {
-  /* 1. تقليل الفواصل الكبيرة */
-  section, #about, #skills, #certs, #contact {
-    padding: 40px 15px !important; /* قللنا المسافة من 120 لـ 40 */
+/* 📱 MOBILE FIX */
+@media (max-width: 768px) {
+  #hero {
+    flex-direction: column-reverse !important;
+    padding: 100px 20px 60px !important;
+    text-align: center !important;
   }
-  
-  .div { margin: 30px 0 !important; } /* تقليل فواصل الخطوط المضيئة */
-
-  /* 2. تظبيط الشهادات عشان تبان إنها بتتحرك */
-  .ct {
-    display: flex !important;
-    gap: 15px !important;
-    overflow-x: auto !important;
-    padding-bottom: 20px !important;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+  .hphoto {
+    width: 220px !important;
+    height: 270px !important;
   }
-
-  .cc {
-    flex: 0 0 85% !important; /* خليت الشهادة تاخد 85% بس عشان حتة من اللي بعدها تبان */
-    scroll-snap-align: center;
-    width: auto !important;
+  .hname {
+    font-size: 40px !important;
   }
-
-  /* تظبيط النصوص والصور */
-  h1, .st, .ch2 { font-size: 32px !important; text-align: center !important; }
-  p, .csub, .atxt { font-size: 15px !important; text-align: center !important; }
-  .hphoto { width: 200px !important; height: 250px !important; margin: 0 auto; }
+  .agrid {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+  .bento {
+    grid-template-columns: 1fr !important;
+  }
 }
-/* 📱 تظبيط الموبايل النهائي - سيف أسامة 📱 */
-@media (max-width: 600px) {
-  /* 1. تقليل الفواصل الكبيرة */
-  section, #about, #skills, #certs, #contact {
-    padding: 40px 15px !important; /* قللنا المسافة من 120 لـ 40 */
-  }
-  
-  .div { margin: 30px 0 !important; } /* تقليل فواصل الخطوط المضيئة */
 
-  /* 2. تظبيط الشهادات عشان تبان إنها بتتحرك */
-  .ct {
-    display: flex !important;
-    gap: 15px !important;
-    overflow-x: auto !important;
-    padding-bottom: 20px !important;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
+/* ════════ I18N / RTL LAYER — SURGICAL ADDITION ONLY ════════ */
+/* Language toggle button */
+#lang-toggle{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:7px 16px;border-radius:100px;
+  border:1px solid var(--bd);background:rgba(255,255,255,.03);
+  color:var(--mu);font-size:12px;font-weight:600;
+  cursor:pointer;transition:all .3s;letter-spacing:.04em;
+  font-family:inherit;margin-left:10px;
+}
+#lang-toggle:hover{
+  border-color:var(--bd2);color:var(--el);
+  background:rgba(0,112,255,.07);
+  box-shadow:0 0 16px rgba(0,112,255,.13);
+}
+.lang-sep{color:var(--dim);font-weight:300;font-size:10px;line-height:1}
+#lang-toggle .lact{color:var(--el)}
 
-  .cc {
-    flex: 0 0 85% !important; /* خليت الشهادة تاخد 85% بس عشان حتة من اللي بعدها تبان */
-    scroll-snap-align: center;
-    width: auto !important;
-  }
-
-  /* تظبيط النصوص والصور */
-  h1, .st, .ch2 { font-size: 32px !important; text-align: center !important; }
-  p, .csub, .atxt { font-size: 15px !important; text-align: center !important; }
-  .hphoto { width: 200px !important; height: 250px !important; margin: 0 auto; }
+/* RTL overrides — only triggered when dir=rtl is set on <html> */
+html[dir=rtl] body{font-family:'Readex Pro',system-ui,sans-serif}
+html[dir=rtl] #lang-toggle{margin-left:0;margin-right:10px}
+html[dir=rtl] nav{direction:rtl}
+html[dir=rtl] #mob{direction:rtl}
+html[dir=rtl] .htag{
+  border-left:none;padding-left:0;
+  border-right:2px solid var(--blue);padding-right:16px;
+}
+html[dir=rtl] .clink:hover{transform:translateX(-7px)}
+html[dir=rtl] .abadge{right:auto;left:-20px}
+html[dir=rtl] #wa{right:auto;left:28px}
+html[dir=rtl] .hbtns{direction:rtl}
+html[dir=rtl] .flinks{direction:rtl}
+html[dir=rtl] .astats{direction:rtl}
+html[dir=rtl] .mw::before{background:linear-gradient(-90deg,var(--bg),transparent)}
+html[dir=rtl] .mw::after{background:linear-gradient(90deg,var(--bg),transparent)}
+html[dir=rtl] .hname{letter-spacing:-.01em;font-family:'Readex Pro',system-ui,sans-serif}
+html[dir=rtl] .st,
+html[dir=rtl] .ch2,
+html[dir=rtl] .btit,
+html[dir=rtl] .bdesc,
+html[dir=rtl] .hdesc,
+html[dir=rtl] .atxt,
+html[dir=rtl] .htag,
+html[dir=rtl] .hrole,
+html[dir=rtl] .hbadge,
+html[dir=rtl] .sl,
+html[dir=rtl] .cdesc,
+html[dir=rtl] .cn,
+html[dir=rtl] .ciss,
+html[dir=rtl] .csub,
+html[dir=rtl] .cllbl,
+html[dir=rtl] .clval,
+html[dir=rtl] .stl,
+html[dir=rtl] .abl,
+html[dir=rtl] .cvlbl,
+html[dir=rtl] .cvsub,
+html[dir=rtl] .fcopy,
+html[dir=rtl] .sn,
+html[dir=rtl] .tag{font-family:'Readex Pro',system-ui,sans-serif}
+html[dir=rtl] .bbadge{right:auto;left:18px}
+html[dir=rtl] .cbdg{right:auto;left:18px}
+html[dir=rtl] .blv{direction:ltr}
+/* RTL mobile adjustments */
+@media(max-width:768px){
+  html[dir=rtl] .abadge{bottom:-12px;left:12px;right:auto}
+  html[dir=rtl] #lang-toggle{margin-right:0}
 }
 </style>
 </head>
@@ -353,7 +382,7 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
     </div>
   </div>
   <div id="lbt"><div id="lbf"></div></div>
-  <div id="llbl">Loading Portfolio</div>
+  <div id="llbl" data-i18n="loader-label">Loading Portfolio</div>
 </div>
 
 <!-- ══════════ NAV ══════════ -->
@@ -364,19 +393,24 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
 </div>
   </a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#certs">Certs</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about" data-i18n="nav-about">About</a></li>
+    <li><a href="#skills" data-i18n="nav-skills">Skills</a></li>
+    <li><a href="#certs" data-i18n="nav-certs">Certs</a></li>
+    <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
   </ul>
   <a href="https://www.behance.net/siefosama77" target="_blank" class="nc">Behance ↗</a>
+  <button id="lang-toggle" onclick="switchLang()" aria-label="Switch language">
+    <span id="lten" class="lact">EN</span>
+    <span class="lang-sep">|</span>
+    <span id="ltar">ع</span>
+  </button>
   <div class="ham" onclick="tgMenu()"><span></span><span></span><span></span></div>
 </nav>
 <div id="mob">
-  <a href="#about" onclick="tgMenu()">About</a>
-  <a href="#skills" onclick="tgMenu()">Skills</a>
-  <a href="#certs" onclick="tgMenu()">Certs</a>
-  <a href="#contact" onclick="tgMenu()">Contact</a>
+  <a href="#about" onclick="tgMenu()" data-i18n="nav-about">About</a>
+  <a href="#skills" onclick="tgMenu()" data-i18n="nav-skills">Skills</a>
+  <a href="#certs" onclick="tgMenu()" data-i18n="nav-certs">Certs</a>
+  <a href="#contact" onclick="tgMenu()" data-i18n="nav-contact">Contact</a>
 </div>
 
 <!-- ══════════ HERO ══════════ -->
@@ -386,25 +420,25 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
     <div class="hero-glow1"></div>
     <div class="hero-glow2"></div>
     <div class="hl">
-      <div class="hbadge">Available for Freelance</div>
+      <div class="hbadge" data-i18n="hero-badge">Available for Freelance</div>
       <h1 class="hero-title fade-up" style="font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1.1; letter-spacing: -0.02em; width: 100%; max-width: 100vw; overflow: visible;">
   SEIF OSAMA <br>
 </h1>
-      <div class="hrole">Graphic Designer</div>
-      <div class="htag">"Precision in Logic. Excellence in Design."</div>
-      <p class="hdesc">I craft visual identities that communicate before words do — blending structured technical thinking with creative vision. From brand systems and packaging to 3D product renders.</p>
+      <div class="hrole" data-i18n="hero-role">Graphic Designer</div>
+      <div class="htag" data-i18n="hero-tagline">"Precision in Logic. Excellence in Design."</div>
+      <p class="hdesc" data-i18n="hero-desc">I craft visual identities that communicate before words do — blending structured technical thinking with creative vision. From brand systems and packaging to 3D product renders.</p>
       <div class="hbtns">
         <a href="https://www.behance.net/siefosama77" target="_blank" class="bp">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/></svg>
-          View Behance
+          <span data-i18n="btn-behance">View Behance</span>
         </a>
         <a href="#contact" class="bs">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          Contact Me
+          <span data-i18n="btn-contact">Contact Me</span>
         </a>
         <a href="Seif-Osama-Fouad-FlowCV-Resume-20251116-7.pdf" target="_blank" class="bo">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download CV
+          <span data-i18n="btn-cv">Download CV</span>
         </a>
       </div>
     </div>
@@ -422,7 +456,7 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
   </div>
   <div class="shint">
     <div class="str"><div class="sdot"></div></div>
-    <div class="stxt">Scroll</div>
+    <div class="stxt" data-i18n="scroll-hint">Scroll</div>
   </div>
 </section>
 
@@ -465,24 +499,24 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
         </div>
         <div class="abadge">
           <div class="abn">3<em>+</em></div>
-          <div class="abl">Years Designing</div>
+          <div class="abl" data-i18n="about-badge-lbl">Years Designing</div>
         </div>
       </div>
       <div>
-        <div class="sl ai d1">About Me</div>
-        <h2 class="st ai d1">Designer with a<br><span class="gr">Technical Edge</span></h2>
-        <p class="atxt ai d2">I'm <strong>Seif Osama</strong> — a graphic designer and <strong>Computer Science & Statistics student at Helwan University</strong>, graduating July 2026. Where most creatives approach design as pure art, I treat it as a system: structured, precise, measurable.</p>
-        <p class="atxt ai d3">My work spans <strong>brand identity, packaging, logo design</strong> and <strong>3D product visualization</strong>. Trained through Egypt's Digital Egypt Pioneers Initiative (DEPI), I've mastered the full Adobe suite — turning concepts into visual narratives that resonate and convert.</p>
-        <p class="atxt ai d4">My <strong>CS background</strong> means I read data, think algorithmically, and approach problems with rigor — a rare combination in the creative world. I don't just design beautifully. I design <em>intelligently</em>.</p>
+        <div class="sl ai d1" data-i18n="about-label">About Me</div>
+        <h2 class="st ai d1" data-i18n="about-heading">Designer with a<br><span class="gr">Technical Edge</span></h2>
+        <p class="atxt ai d2" data-i18n="about-p1">I'm <strong>Seif Osama</strong> — a graphic designer and <strong>Computer Science & Statistics student at Helwan University</strong>, graduating July 2026. Where most creatives approach design as pure art, I treat it as a system: structured, precise, measurable.</p>
+        <p class="atxt ai d3" data-i18n="about-p2">My work spans <strong>brand identity, packaging, logo design</strong> and <strong>3D product visualization</strong>. Trained through Egypt's Digital Egypt Pioneers Initiative (DEPI), I've mastered the full Adobe suite — turning concepts into visual narratives that resonate and convert.</p>
+        <p class="atxt ai d4" data-i18n="about-p3">My <strong>CS background</strong> means I read data, think algorithmically, and approach problems with rigor — a rare combination in the creative world. I don't just design beautifully. I design <em>intelligently</em>.</p>
         <div class="astats ai">
-          <div><div class="stn">10<em>+</em></div><div class="stl">Projects</div></div>
-          <div><div class="stn">3<em>+</em></div><div class="stl">Certificates</div></div>
-          <div><div class="stn">4<em>+</em></div><div class="stl">Adobe Tools</div></div>
+          <div><div class="stn">10<em>+</em></div><div class="stl" data-i18n="stat-projects">Projects Delivered</div></div>
+          <div><div class="stn">3<em>+</em></div><div class="stl" data-i18n="stat-certs">Certificates</div></div>
+          <div><div class="stn">4<em>+</em></div><div class="stl" data-i18n="stat-tools">Adobe Tools</div></div>
         </div>
         <div class="tags ai">
-          <span class="tag">Brand Identity</span><span class="tag">Image Manipulation</span>
-          <span class="tag">Social Media Designs</span><span class="tag">Packaging Design</span>
-          <span class="tag">Logo Design</span><span class="tag">AI Skills</span>
+          <span class="tag" data-i18n="tag-brand">Brand Identity</span><span class="tag" data-i18n="tag-image">Image Manipulation</span>
+          <span class="tag" data-i18n="tag-social">Social Media Designs</span><span class="tag" data-i18n="tag-pack">Packaging Design</span>
+          <span class="tag" data-i18n="tag-logo">Logo Design</span><span class="tag" data-i18n="tag-ai">AI Skills</span>
         </div>
       </div>
     </div>
@@ -494,66 +528,66 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
 <!-- ══════════ SKILLS ══════════ -->
 <section id="skills">
   <div class="wrap">
-    <div class="sl ai">Expertise</div>
-    <h2 class="st ai">Skills &<br><span class="gr">Capabilities</span></h2>
+    <div class="sl ai" data-i18n="skills-label">Expertise</div>
+    <h2 class="st ai" data-i18n="skills-heading">Skills &<br><span class="gr">Capabilities</span></h2>
     <div class="bento">
       <div class="bc s32 ai" style="background:linear-gradient(135deg,rgba(0,112,255,.07),transparent)">
-        <div class="bbadge">Core</div>
+        <div class="bbadge" data-i18n="bc-core-badge">Core</div>
         <div class="bicon">🎨</div>
-        <div class="btit">Brand Identity Design</div>
-        <div class="bdesc">Crafting cohesive visual identities — from logo systems and typography hierarchies to full brand guidelines. Every touchpoint aligned, every element intentional. Built to be instantly recognizable and emotionally resonant across every format and scale.</div>
+        <div class="btit" data-i18n="bc-brand-title">Brand Identity Design</div>
+        <div class="bdesc" data-i18n="bc-brand-desc">Crafting cohesive visual identities — from logo systems and typography hierarchies to full brand guidelines. Every touchpoint aligned, every element intentional. Built to be instantly recognizable and emotionally resonant across every format and scale.</div>
         <div class="blv"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div>
       </div>
       <div class="bc s3 ai d1">
         <div class="bicon">📦</div>
-        <div class="btit">Packaging Design</div>
-        <div class="bdesc">Structural and visual packaging that sells on shelf and screens. From dielines to 3D renders — packaging with purpose and precision.</div>
+        <div class="btit" data-i18n="bc-pack-title">Packaging Design</div>
+        <div class="bdesc" data-i18n="bc-pack-desc">Structural and visual packaging that sells on shelf and screens. From dielines to 3D renders — packaging with purpose and precision.</div>
         <div class="blv"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div></div>
       </div>
       <div class="bc s3 ai d2">
         <div class="bicon">✏️</div>
-        <div class="btit">Logo Design</div>
-        <div class="bdesc">Timeless marks built on geometry, intent and precision. Scalable from favicon to billboard — vectors that carry meaning at every size.</div>
+        <div class="btit" data-i18n="bc-logo-title">Logo Design</div>
+        <div class="bdesc" data-i18n="bc-logo-desc">Timeless marks built on geometry, intent and precision. Scalable from favicon to billboard — vectors that carry meaning at every size.</div>
         <div class="blv"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div>
       </div>
       <div class="bc s2 ai">
         <div class="bicon" style="font-size:18px;font-weight:900;color:#31a8ff;font-family:sans-serif;background:rgba(49,168,255,.1)">Ps</div>
-        <div class="btit" style="font-size:15px">Adobe Photoshop</div>
-        <div class="bdesc" style="font-size:12px">Retouching, compositing, digital illustration, visual effects</div>
+        <div class="btit" style="font-size:15px" data-i18n="bc-ps-title">Adobe Photoshop</div>
+        <div class="bdesc" style="font-size:12px" data-i18n="bc-ps-desc">Retouching, compositing, digital illustration, visual effects</div>
         <div class="blv" style="margin-top:12px"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div>
       </div>
       <div class="bc s2 ai d1">
         <div class="bicon" style="font-size:18px;font-weight:900;color:#ff9a00;font-family:sans-serif;background:rgba(255,154,0,.1)">Ai</div>
-        <div class="btit" style="font-size:15px">Adobe Illustrator</div>
-        <div class="bdesc" style="font-size:12px">Vector design, logos, branding assets, illustration systems</div>
+        <div class="btit" style="font-size:15px" data-i18n="bc-ai-title">Adobe Illustrator</div>
+        <div class="bdesc" style="font-size:12px" data-i18n="bc-ai-desc">Vector design, logos, branding assets, illustration systems</div>
         <div class="blv" style="margin-top:12px"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div>
       </div>
       <div class="bc s2 ai d2">
         <div class="bicon" style="font-size:18px;font-weight:900;color:#ff3366;font-family:sans-serif;background:rgba(255,51,102,.1)">Id</div>
-        <div class="btit" style="font-size:15px">Adobe InDesign</div>
-        <div class="bdesc" style="font-size:12px">Print layouts, editorial design, magazines, reports</div>
+        <div class="btit" style="font-size:15px" data-i18n="bc-id-title">Adobe InDesign</div>
+        <div class="bdesc" style="font-size:12px" data-i18n="bc-id-desc">Print layouts, editorial design, magazines, reports</div>
         <div class="blv" style="margin-top:12px"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div></div>
       </div>
       <div class="bc s3 ai" style="background:linear-gradient(135deg,rgba(80,40,200,.07),transparent)">
         <div class="bicon" style="font-size:18px;font-weight:900;color:#a080ff;font-family:sans-serif;background:rgba(160,128,255,.1)">Dn</div>
-        <div class="btit">Adobe Dimension · 3D Mockups</div>
-        <div class="bdesc">Photorealistic product visualizations and packaging renders. Lighting, materials, and depth — bringing 2D designs into immersive three-dimensional life.</div>
+        <div class="btit" data-i18n="bc-dn-title">Adobe Dimension · 3D Mockups</div>
+        <div class="bdesc" data-i18n="bc-dn-desc">Photorealistic product visualizations and packaging renders. Lighting, materials, and depth — bringing 2D designs into immersive three-dimensional life.</div>
         <div class="blv"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div></div>
       </div>
       <div class="bc s2 ai d1">
         <div class="bicon">📱</div>
-        <div class="btit" style="font-size:15px">Social Media Design</div>
-        <div class="bdesc" style="font-size:12px">Scroll-stopping content — consistent, on-brand, built for engagement.</div>
+        <div class="btit" style="font-size:15px" data-i18n="bc-sm-title">Social Media Design</div>
+        <div class="bdesc" style="font-size:12px" data-i18n="bc-sm-desc">Scroll-stopping content — consistent, on-brand, built for engagement.</div>
       </div>
       <div class="bc s2 ai d2">
         <div class="bicon">🤖</div>
-        <div class="btit" style="font-size:15px">AI-Assisted Front-End</div>
-        <div class="bdesc" style="font-size:12px">UI/UX design with AI-enhanced workflows — bridging design and implementation.</div>
+        <div class="btit" style="font-size:15px" data-i18n="bc-fe-title">AI-Assisted Front-End</div>
+        <div class="bdesc" style="font-size:12px" data-i18n="bc-fe-desc">UI/UX design with AI-enhanced workflows — bridging design and implementation.</div>
       </div>
       <div class="bc s2 ai d3">
         <div class="bicon">⚡</div>
-        <div class="btit" style="font-size:15px">Creative Problem Solving</div>
-        <div class="bdesc" style="font-size:12px">Translating complex briefs into elegant solutions through structured creative thinking.</div>
+        <div class="btit" style="font-size:15px" data-i18n="bc-cp-title">Creative Problem Solving</div>
+        <div class="bdesc" style="font-size:12px" data-i18n="bc-cp-desc">Translating complex briefs into elegant solutions through structured creative thinking.</div>
       </div>
     </div>
   </div>
@@ -564,29 +598,29 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
 <!-- ══════════ CERTS ══════════ -->
 <section id="certs">
   <div class="wrap">
-    <div class="sl ai">Credentials</div>
-    <h2 class="st ai">Certificates &<br><span class="gr">Training</span></h2>
+    <div class="sl ai" data-i18n="certs-label">Credentials</div>
+    <h2 class="st ai" data-i18n="certs-heading">Certificates &<br><span class="gr">Training</span></h2>
   </div>
   <div style="max-width:1200px;margin:0 auto;padding:0 64px" class="ai">
     <div class="cw">
       <div class="ct" id="ctrack">
         <div class="cc">   
           <img src="nvidia-logo-vert.svg" style="height: 32px; width: auto; filter: brightness(0) invert(1);" alt="NVIDIA">
-          <div class="cn">NVIDIA AI Certificate</div>
-          <div class="ciss">NVIDIA Corporation · ITI</div>
-          <div class="cdesc">Certificate of Competency in Artificial Intelligence — covering AI fundamentals, machine learning, deep learning, and practical model applications in real-world scenarios.</div>
+          <div class="cn" data-i18n="cert-nvidia-name">NVIDIA AI Certificate</div>
+          <div class="ciss" data-i18n="cert-nvidia-issuer">NVIDIA Corporation · ITI</div>
+          <div class="cdesc" data-i18n="cert-nvidia-desc">Certificate of Competency in Artificial Intelligence — covering AI fundamentals, machine learning, deep learning, and practical model applications in real-world scenarios.</div>
         </div>
         <div class="cc" style="border-color:rgba(0,112,255,.2)">
           <img src="DEBI-en.webp" style="height: 40px; width: auto; object-fit: contain;" alt="DEPI">
-          <div class="cn">Digital Egypt Pioneers Initiative</div>
-          <div class="ciss">DEPI · YAT Learning Center · Oct 2024 – Jun 2025</div>
-          <div class="cdesc">9-month Graphic Design Track in Maadi, Cairo — Photoshop, Illustrator, InDesign, Dimension, Freelancing Fundamentals, and English for Communication.</div>
+          <div class="cn" data-i18n="cert-depi-name">Digital Egypt Pioneers Initiative</div>
+          <div class="ciss" data-i18n="cert-depi-issuer">DEPI · YAT Learning Center · Oct 2024 – Jun 2025</div>
+          <div class="cdesc" data-i18n="cert-depi-desc">9-month Graphic Design Track in Maadi, Cairo — Photoshop, Illustrator, InDesign, Dimension, Freelancing Fundamentals, and English for Communication.</div>
         </div>
         <div class="cc">
           <img src="ColoredLogo.svg" style="height: 38px; width: auto; object-fit: contain;" alt="ITI">
-          <div class="cn">ITI Professional Certificate</div>
-          <div class="ciss">Information Technology Institute · Egypt</div>
-          <div class="cdesc">Professional certification from Egypt's premier IT training institution, validating advanced technical and design competencies at national standard.</div>
+          <div class="cn" data-i18n="cert-iti-name">ITI Professional Certificate</div>
+          <div class="ciss" data-i18n="cert-iti-issuer">Information Technology Institute · Egypt</div>
+          <div class="cdesc" data-i18n="cert-iti-desc">Professional certification from Egypt's premier IT training institution, validating advanced technical and design competencies at national standard.</div>
         </div>
       </div>
     </div>
@@ -600,26 +634,26 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
   <div class="wrap">
     <div class="cgrid">
       <div>
-        <div class="sl ai">Get In Touch</div>
-        <h2 class="ch2 ai">Let's Work<br><span class="gr">Together.</span></h2>
-        <p class="csub ai d1">Open to freelance projects, brand collaborations, and creative opportunities. Let's build something exceptional that lasts.</p>
+        <div class="sl ai" data-i18n="contact-label">Get In Touch</div>
+        <h2 class="ch2 ai" data-i18n="contact-heading">Let's Work<br><span class="gr">Together.</span></h2>
+        <p class="csub ai d1" data-i18n="contact-sub">Open to freelance projects, brand collaborations, and creative opportunities. Let's build something exceptional that lasts.</p>
         <div class="clinks ai d2">
           <a href="mailto:siefosama564@gmail.com" class="clink">
   <div class="clicon"><img src="Gmail_icon_(2020).svg.png" style="width:20px; height:auto;" alt="Email"></div>
-  <div><div class="cllbl">Email</div><div class="clval">siefosama564@gmail.com</div></div>
+  <div><div class="cllbl" data-i18n="contact-email-lbl">Email</div><div class="clval">siefosama564@gmail.com</div></div>
 </a>
 <a href="https://wa.me/201156790032" target="_blank" class="clink">
   <div class="clicon"><img src="logo.png" style="width:20px; height:auto;" alt="WhatsApp"></div>
-  <div><div class="cllbl">WhatsApp</div><div class="clval">+20 115 679 0032</div></div>
+  <div><div class="cllbl" data-i18n="contact-wa-lbl">WhatsApp</div><div class="clval">+20 115 679 0032</div></div>
 </a>
 <a href="https://www.linkedin.com/in/sief-osama-0184a8312" target="_blank" class="clink">
   <div class="clicon"><img src="linkedin.png" style="width:20px; height:auto;" alt="LinkedIn"></div>
-  <div><div class="cllbl">LinkedIn</div><div class="clval">Sief Osama</div></div>
+  <div><div class="cllbl" data-i18n="contact-li-lbl">LinkedIn</div><div class="clval">Sief Osama</div></div>
 </a>
         </div>
       </div>
       <div class="ai d2">
-        <div style="font-size:11px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;margin-bottom:18px">Find me on</div>
+        <div style="font-size:11px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;margin-bottom:18px" data-i18n="social-find">Find me on</div>
         <div class="sgrid">
   <a href="https://www.behance.net/siefosama77" target="_blank" class="sc2">
     <div class="si"><img src="behance-1-logo-png-transparent.png" style="width:24px; height:auto;" alt="Behance"></div>
@@ -639,19 +673,19 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
   </a>
   <a href="https://wa.me/201156790032" target="_blank" class="sc2">
     <div class="si"><img src="logo.png" style="width:24px; height:auto;" alt="WhatsApp"></div>
-    <div class="sn">WhatsApp</div>
+    <div class="sn" data-i18n="contact-wa-lbl">WhatsApp</div>
   </a>
   <a href="mailto:siefosama564@gmail.com" class="sc2">
     <div class="si"><img src="Gmail_icon_(2020).svg.png" style="width:24px; height:auto;" alt="Email"></div>
-    <div class="sn">Email</div>
+    <div class="sn" data-i18n="contact-email-lbl">Email</div>
   </a>
 </div>
         <div class="cvblock">
-          <div class="cvlbl">Download CV</div>
-          <div class="cvsub">Full resume with education, skills, training, and project experience.</div>
+          <div class="cvlbl" data-i18n="cv-lbl">Download CV</div>
+          <div class="cvsub" data-i18n="cv-sub">Full resume with education, skills, training, and project experience.</div>
           <a href="Seif-Osama-Fouad-FlowCV-Resume-20251116-7.pdf" target="_blank" class="bp" style="width:100%;justify-content:center;border-radius:14px">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download CV — PDF
+            <span data-i18n="cv-btn">Download CV — PDF</span>
           </a>
         </div>
       </div>
@@ -668,7 +702,7 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
   <img class="flogo" src="SEIF OSAMA.png" alt="Seif Osama"
        onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
   <span style="display:none;font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#fff">SEIF OSAMA</span>
-  <div class="fcopy">© 2025 Seif Osama . All rights reserved.</div>
+  <div class="fcopy" data-i18n="footer-copy">© 2025 Seif Osama . All rights reserved.</div>
   <div class="flinks">
     <a href="https://www.behance.net/siefosama77" target="_blank">Behance</a>
     <a href="https://www.linkedin.com/in/sief-osama-0184a8312" target="_blank">LinkedIn</a>
@@ -790,6 +824,263 @@ window.addEventListener('load',()=>{
   document.querySelectorAll('.ai').forEach(el=>{
     if(el.getBoundingClientRect().top<window.innerHeight*.95)el.classList.add('v');
   });
+});
+</script>
+<!-- ══════════════════════════════════════════════════════
+     BILINGUAL ENGINE — EN / AR
+     Surgical addition — zero impact on existing animations,
+     cursor, particles, tilt, or magnetic buttons.
+════════════════════════════════════════════════════════ -->
+<script>
+/* ─── Translation dictionary ─────────────────────────── */
+const i18n = {
+  en: {
+    /* meta */
+    'page-title':        'Seif Osama — Graphic Designer',
+    /* loader */
+    'loader-label':      'Loading Portfolio',
+    /* nav */
+    'nav-about':         'About',
+    'nav-skills':        'Skills',
+    'nav-certs':         'Certs',
+    'nav-contact':       'Contact',
+    /* hero */
+    'hero-badge':        'Available for Freelance',
+    'hero-role':         'Graphic Designer',
+    'hero-tagline':      '"Precision in Logic. Excellence in Design."',
+    'hero-desc':         'I craft visual identities that communicate before words do — blending structured technical thinking with creative vision. From brand systems and packaging to 3D product renders.',
+    'btn-behance':       'View Behance',
+    'btn-contact':       'Contact Me',
+    'btn-cv':            'Download CV',
+    'scroll-hint':       'Scroll',
+    /* about */
+    'about-label':       'About Me',
+    'about-heading':     'Designer with a<br><span class="gr">Technical Edge</span>',
+    'about-p1':          'I\'m <strong>Seif Osama</strong> — a graphic designer and <strong>Computer Science &amp; Statistics student at Helwan University</strong>, graduating July 2026. Where most creatives approach design as pure art, I treat it as a system: structured, precise, measurable.',
+    'about-p2':          'My work spans <strong>brand identity, packaging, logo design</strong> and <strong>3D product visualization</strong>. Trained through Egypt\'s Digital Egypt Pioneers Initiative (DEPI), I\'ve mastered the full Adobe suite — turning concepts into visual narratives that resonate and convert.',
+    'about-p3':          'My <strong>CS background</strong> means I read data, think algorithmically, and approach problems with rigor — a rare combination in the creative world. I don\'t just design beautifully. I design <em>intelligently</em>.',
+    'about-badge-lbl':   'Years Designing',
+    'stat-projects':     'Projects Delivered',
+    'stat-certs':        'Certificates',
+    'stat-tools':        'Adobe Tools',
+    'tag-brand':         'Brand Identity',
+    'tag-image':         'Image Manipulation',
+    'tag-social':        'Social Media Designs',
+    'tag-pack':          'Packaging Design',
+    'tag-logo':          'Logo Design',
+    'tag-ai':            'AI Skills',
+    /* skills */
+    'skills-label':      'Expertise',
+    'skills-heading':    'Skills &<br><span class="gr">Capabilities</span>',
+    'bc-core-badge':     'Core',
+    'bc-brand-title':    'Brand Identity Design',
+    'bc-brand-desc':     'Crafting cohesive visual identities — from logo systems and typography hierarchies to full brand guidelines. Every touchpoint aligned, every element intentional. Built to be instantly recognizable and emotionally resonant across every format and scale.',
+    'bc-pack-title':     'Packaging Design',
+    'bc-pack-desc':      'Structural and visual packaging that sells on shelf and screens. From dielines to 3D renders — packaging with purpose and precision.',
+    'bc-logo-title':     'Logo Design',
+    'bc-logo-desc':      'Timeless marks built on geometry, intent and precision. Scalable from favicon to billboard — vectors that carry meaning at every size.',
+    'bc-ps-title':       'Adobe Photoshop',
+    'bc-ps-desc':        'Retouching, compositing, digital illustration, visual effects',
+    'bc-ai-title':       'Adobe Illustrator',
+    'bc-ai-desc':        'Vector design, logos, branding assets, illustration systems',
+    'bc-id-title':       'Adobe InDesign',
+    'bc-id-desc':        'Print layouts, editorial design, magazines, reports',
+    'bc-dn-title':       'Adobe Dimension · 3D Mockups',
+    'bc-dn-desc':        'Photorealistic product visualizations and packaging renders. Lighting, materials, and depth — bringing 2D designs into immersive three-dimensional life.',
+    'bc-sm-title':       'Social Media Design',
+    'bc-sm-desc':        'Scroll-stopping content — consistent, on-brand, built for engagement.',
+    'bc-fe-title':       'AI-Assisted Front-End',
+    'bc-fe-desc':        'UI/UX design with AI-enhanced workflows — bridging design and implementation.',
+    'bc-cp-title':       'Creative Problem Solving',
+    'bc-cp-desc':        'Translating complex briefs into elegant solutions through structured creative thinking.',
+    /* certs */
+    'certs-label':       'Credentials',
+    'certs-heading':     'Certificates &<br><span class="gr">Training</span>',
+    'cert-nvidia-name':  'NVIDIA AI Certificate',
+    'cert-nvidia-issuer':'NVIDIA Corporation · ITI',
+    'cert-nvidia-desc':  'Certificate of Competency in Artificial Intelligence — covering AI fundamentals, machine learning, deep learning, and practical model applications in real-world scenarios.',
+    'cert-depi-name':    'Digital Egypt Pioneers Initiative',
+    'cert-depi-issuer':  'DEPI · YAT Learning Center · Oct 2024 – Jun 2025',
+    'cert-depi-desc':    '9-month Graphic Design Track in Maadi, Cairo — Photoshop, Illustrator, InDesign, Dimension, Freelancing Fundamentals, and English for Communication.',
+    'cert-iti-name':     'ITI Professional Certificate',
+    'cert-iti-issuer':   'Information Technology Institute · Egypt',
+    'cert-iti-desc':     'Professional certification from Egypt\'s premier IT training institution, validating advanced technical and design competencies at national standard.',
+    /* contact */
+    'contact-label':     'Get In Touch',
+    'contact-heading':   'Let\'s Work<br><span class="gr">Together.</span>',
+    'contact-sub':       'Open to freelance projects, brand collaborations, and creative opportunities. Let\'s build something exceptional that lasts.',
+    'contact-email-lbl': 'Email',
+    'contact-wa-lbl':    'WhatsApp',
+    'contact-li-lbl':    'LinkedIn',
+    'social-find':       'Find me on',
+    'cv-lbl':            'Download CV',
+    'cv-sub':            'Full resume with education, skills, training, and project experience.',
+    'cv-btn':            'Download CV — PDF',
+    /* footer */
+    'footer-copy':       '© 2025 Seif Osama . All rights reserved.',
+  },
+
+  ar: {
+    /* meta */
+    'page-title':        'سيف أسامة — مصمم جرافيك',
+    /* loader */
+    'loader-label':      'جاري التحميل',
+    /* nav */
+    'nav-about':         'من أنا',
+    'nav-skills':        'مهاراتي',
+    'nav-certs':         'الشهادات',
+    'nav-contact':       'تواصل معي',
+    /* hero */
+    'hero-badge':        'متاح للعمل الحر',
+    'hero-role':         'مصمم جرافيك',
+    'hero-tagline':      '"دقة في التفكير .. تميز في التصميم"',
+    'hero-desc':         'بصمم هويات بصرية بتتكلم قبل ما الكلام يجي — بدمج التفكير التقني المنظم مع الرؤية الإبداعية. من أنظمة البراند والتغليف لحد المنتجات ثلاثية الأبعاد.',
+    'btn-behance':       'شوف أعمالي على Behance',
+    'btn-contact':       'كلمني',
+    'btn-cv':            'حمّل السيرة الذاتية',
+    'scroll-hint':       'اسكرول',
+    /* about */
+    'about-label':       'من أنا',
+    'about-heading':     'مصمم بعقل<br><span class="gr">تقني مميز</span>',
+    'about-p1': 'أنا <strong>سيف أسامة</strong> — مصمم جرافيك وطالب في <strong>كلية العلوم جامعة حلوان قسم الإحصاء وعلوم الحاسب</strong>، متخرج يوليو 2026. أنا بشوف التصميم مش مجرد فن — ده نظام: منطقي، دقيق، وقابل للقياس.',
+    'about-p2':          'شغلي بيشمل <strong>الهوية البصرية، التغليف، تصميم الشعارات</strong> و<strong>التصور ثلاثي الأبعاد للمنتجات</strong>. اتدربت في مبادرة رواد مصر الرقمية (DEPI) واتقنت أدوات Adobe  — بحول الأفكار لقصص بصرية بتأثر وبتنجح.',
+    'about-p3':          'خلفيتي في <strong>علوم الحاسب</strong> خلّتني أقرا البيانات، أفكر بمنطق اكتر، وأتعامل مع المشاكل بدقة — مزيج نادر في عالم الإبداع. أنا مش بس بصمم حلو. أنا بصمم <em>بذكاء</em>.',
+    'about-badge-lbl':   'سنوات خبرة',
+    'stat-projects':     'مشاريع',
+    'stat-certs':        'شهادات',
+    'stat-tools':        'أدوات Adobe',
+    'tag-brand':         'هوية بصرية',
+    'tag-image':         'تعديل الصور',
+    'tag-social':        'تصميم سوشيال ميديا',
+    'tag-pack':          'تصميم التغليف',
+    'tag-logo':          'تصميم شعارات',
+    'tag-ai':            'مهارات AI',
+    /* skills */
+    'skills-label':      'تخصصاتي',
+    'skills-heading':    'المهارات &<br><span class="gr">القدرات</span>',
+    'bc-core-badge':     'أساسي',
+    'bc-brand-title':    'تصميم الهوية البصرية',
+    'bc-brand-desc':     'بناء هويات بصرية متماسكة — من أنظمة الشعارات وتسلسل الخطوط لحد الدليل الكامل للعلامة التجارية. كل نقطة تواصل متناسقة، وكل عنصر مقصود. شغل يخلّي البراند يتعرف عليه على طول ويأثر في صاحبه.',
+    'bc-pack-title':     'تصميم التغليف',
+    'bc-pack-desc':      'تغليف بصري وهيكلي بيبيع على الرف والشاشة. من رسومات القطع لحد التصور ثلاثي الأبعاد — تغليف فيه هدف ودقة.',
+    'bc-logo-title':     'تصميم الشعارات',
+    'bc-logo-desc':      'علامات خالدة مبنية على هندسة وقصد ودقة. قابلة للتكبير من الأيقونة الصغيرة لحد اللافتة الكبيرة — شعارات بتحمل معنى في كل حجم.',
+    'bc-ps-title':       'Adobe Photoshop',
+    'bc-ps-desc':        'تعديل الصور، التركيب، الرسم الرقمي، المؤثرات البصرية',
+    'bc-ai-title':       'Adobe Illustrator',
+    'bc-ai-desc':        'تصميم فيكتور، شعارات، أصول البراند، أنظمة الرسم',
+    'bc-id-title':       'Adobe InDesign',
+    'bc-id-desc':        'تصميم المطبوعات، التصميم التحريري، المجلات، التقارير',
+    'bc-dn-title':       'Adobe Dimension · موكاب ثلاثي الأبعاد',
+    'bc-dn-desc':        'تصور المنتجات والتغليف بشكل فوتوريالستيك. إضاءة، مواد، وعمق — بنقل التصميمات ثنائية الأبعاد لعالم ثلاثي مبهر.',
+    'bc-sm-title':       'تصميم السوشيال ميديا',
+    'bc-sm-desc':        'محتوى بيوقف الإصبع — متناسق، على البراند، مصمم للتفاعل.',
+    'bc-fe-title':       'فرونت إند بمساعدة AI',
+    'bc-fe-desc':        'تصميم UI/UX بسيرفورك محسّن بالذكاء الاصطناعي — بربط التصميم بالتنفيذ.',
+    'bc-cp-title':       'حل المشكلات الإبداعي',
+    'bc-cp-desc':        'تحويل البريفات المعقدة لحلول أنيقة من خلال تفكير إبداعي منهجي.',
+    /* certs */
+    'certs-label':       'الشهادات',
+    'certs-heading':     'شهاداتي &<br><span class="gr">التدريب</span>',
+    'cert-nvidia-name':  'شهادة NVIDIA في الذكاء الاصطناعي',
+    'cert-nvidia-issuer':'NVIDIA Corporation · ITI',
+    'cert-nvidia-desc':  'شهادة كفاءة في الذكاء الاصطناعي — بتغطي أساسيات AI، تعلم الآلة، التعلم العميق، وتطبيقات النماذج في السيناريوهات الحقيقية.',
+    'cert-depi-name':    'مبادرة رواد مصر الرقمية',
+    'cert-depi-issuer':  'DEPI · مركز YAT التعليمي · أكتوبر 2024 – يونيو 2025',
+    'cert-depi-desc':    'مسار تصميم جرافيك لمدة 9 أشهر في المعادي، القاهرة — Photoshop وIllustrator وInDesign وDimension وأساسيات الفريلانس والإنجليزية للتواصل المهني.',
+    'cert-iti-name':     'شهادة ITI المهنية',
+    'cert-iti-issuer':   'معهد تكنولوجيا المعلومات · مصر',
+    'cert-iti-desc':     'شهادة مهنية من أعرق مؤسسات التدريب التقني في مصر، بتُثبت الكفاءة التقنية والتصميمية على أعلى مستوى وطني.',
+    /* contact */
+    'contact-label':     'تواصل معايا',
+    'contact-heading':   'خلينا<br><span class="gr">نشتغل سوا.</span>',
+    'contact-sub':       'متاح لمشاريع الفريلانس، كلمني ونبني حاجة مميزة تفرق.',
+    'contact-email-lbl': 'البريد الإلكتروني',
+    'contact-wa-lbl':    'واتساب',
+    'contact-li-lbl':    'لينكد إن',
+    'social-find':       'لاقيني على',
+    'cv-lbl':            'حمّل السيرة الذاتية',
+    'cv-sub':            'السيرة الذاتية الكاملة فيها التعليم والمهارات والتدريب وتفاصيل المشاريع.',
+    'cv-btn':            'تحميل السيرة الذاتية — PDF',
+    /* footer */
+    'footer-copy':       '© 2025 سيف أسامة. جميع الحقوق محفوظة.',
+  }
+};
+
+/* ─── State ──────────────────────────────────────────── */
+let currentLang = localStorage.getItem('so-lang') || 'en';
+
+/* ─── Core apply function ────────────────────────────── */
+function applyLang(lang) {
+  const html = document.documentElement;
+  const dict = i18n[lang];
+
+  /* Direction & lang attribute — instant, no flash */
+  html.setAttribute('lang', lang);
+  html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+  /* Page title */
+  document.title = dict['page-title'];
+
+  /* All tagged elements */
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) {
+      el.innerHTML = dict[key];
+    }
+  });
+
+  /* Toggle button active indicator */
+  const ten = document.getElementById('lten');
+  const tar = document.getElementById('ltar');
+  if (ten && tar) {
+    if (lang === 'ar') {
+      ten.classList.remove('lact');
+      tar.classList.add('lact');
+    } else {
+      ten.classList.add('lact');
+      tar.classList.remove('lact');
+    }
+  }
+
+  /* Arabic font override on body */
+  document.body.style.fontFamily = lang === 'ar'
+    ? "'Readex Pro', system-ui, sans-serif"
+    : '';
+
+  /* Re-bind magnetic buttons after innerHTML refresh (safety) */
+  bindMagnetic();
+}
+
+/* ─── Switch handler ─────────────────────────────────── */
+function switchLang() {
+  currentLang = currentLang === 'en' ? 'ar' : 'en';
+  localStorage.setItem('so-lang', currentLang);
+  applyLang(currentLang);
+}
+
+/* ─── Re-bind magnetic buttons (non-destructive) ─────── */
+function bindMagnetic() {
+  document.querySelectorAll('.bp,.bs').forEach(b => {
+    /* remove old listeners by cloning, preserving all attrs */
+    const fresh = b.cloneNode(true);
+    b.parentNode.replaceChild(fresh, b);
+  });
+  document.querySelectorAll('.bp,.bs').forEach(b => {
+    b.addEventListener('mousemove', e => {
+      const r = b.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width / 2) * 0.22;
+      const y = (e.clientY - r.top - r.height / 2) * 0.22;
+      b.style.transform = `translate(${x}px,${y}px) translateY(-2px)`;
+    });
+    b.addEventListener('mouseleave', () => b.style.transform = '');
+  });
+}
+
+/* ─── Init on DOMContentLoaded ───────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  /* Small delay so existing DOMContentLoaded (loader etc) fires first */
+  setTimeout(() => applyLang(currentLang), 50);
 });
 </script>
 </body>
