@@ -187,26 +187,97 @@ section{position:relative;z-index:1}
 .ld.on{background:var(--el);box-shadow:0 0 6px var(--el)}
 
 
-/* ════════ CERTS ════════ */
-#certs{padding:40px 0;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
-.cw{overflow:hidden;position:relative;margin-top:56px}
-.cw::before,.cw::after{content:'';position:absolute;top:0;width:80px;height:100%;z-index:2;pointer-events:none}
-.cw::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
-.cw::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
-.ct{display:flex;gap:18px;overflow-x:auto;padding:6px 0 20px;scrollbar-width:none}
-.ct::-webkit-scrollbar{display:none}
-.cc{flex-shrink:0;width:320px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:32px;transition:all .4s;position:relative;overflow:hidden}
-.cc::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(0,112,255,.12),transparent 60%);opacity:0;transition:.4s}
-.cc:hover{border-color:rgba(0,112,255,.35);transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 30px rgba(0,112,255,.1)}
+/* ════════ CERTS — BENTO GRID ════════ */
+#certs.certs-zone{
+  padding:40px 0 25svh;
+  background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
+  overflow:hidden;
+}
+.certs-header{text-align:center}
+.certs-header .sl,.certs-header .st{margin-left:auto;margin-right:auto}
+.certs-header .sl::before{display:none}
+.certs-bento-wrap{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 64px;
+  display:flex;
+  justify-content:center;
+}
+.certs-bento{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  width:100%;
+  max-width:1080px;
+  margin-top:56px;
+}
+.cc{
+  width:100%;
+  background:var(--sf);
+  border:1px solid rgba(61,155,255,.22);
+  border-radius:var(--r);
+  padding:32px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 0 10px rgba(61,155,255,.2);
+  transition:border-color .4s,box-shadow .4s,transform .4s;
+}
+.cc::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 50% 0%,rgba(0,112,255,.12),transparent 60%);
+  opacity:0;
+  transition:opacity .4s;
+  pointer-events:none;
+}
+.cc:hover{
+  border-color:rgba(61,155,255,.45);
+  transform:translateY(-5px);
+  box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 24px rgba(61,155,255,.28);
+}
+.cert-reveal.v:hover{transform:translateY(-5px)}
 .cc:hover::before{opacity:1}
-.ci{width:56px;height:56px;border-radius:16px;margin-bottom:20px;background:rgba(0,112,255,.1);border:1px solid rgba(0,112,255,.2);display:flex;align-items:center;justify-content:center;font-size:28px}
+.cert-logo-wrap{
+  width:56px;
+  height:56px;
+  border-radius:14px;
+  margin-bottom:20px;
+  background:rgba(0,112,255,.1);
+  border:1px solid rgba(0,112,255,.2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  overflow:hidden;
+}
+.cert-logo-wrap img{
+  max-width:78%;
+  max-height:78%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+}
+.cert-logo-wrap--nvidia img{filter:brightness(0) invert(1);max-height:52%}
 .cn{font-family:var(--d);font-size:17px;font-weight:700;color:var(--wh);margin-bottom:5px;line-height:1.2}
 .ciss{font-size:12px;color:var(--el);margin-bottom:12px;font-weight:500}
 .cdesc{font-size:12.5px;color:var(--mu);line-height:1.65}
-.cbdg{position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;background:rgba(0,112,255,.1);border:1px solid rgba(0,112,255,.2);display:flex;align-items:center;justify-content:center;font-size:15px}
-.cnav{display:flex;justify-content:center;gap:10px;margin-top:24px}
-.cnb{width:40px;height:40px;border-radius:50%;background:var(--sf);border:1px solid var(--bd);color:var(--mu);cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;font-size:16px}
-.cnb:hover{border-color:var(--bd3);color:var(--el);box-shadow:0 4px 16px rgba(0,112,255,.15)}
+html[dir=rtl] .cdesc[data-i18n-certs-desc="cert-depi-desc"],
+.cdesc--depi{line-height:1.9}
+/* Cert card reveal — unique motion per card */
+.cert-reveal{
+  opacity:0;
+  transition:opacity .75s ease,transform .75s cubic-bezier(.22,1,.36,1);
+}
+.cert-reveal--up{transform:translateY(44px)}
+.cert-reveal--rotate{transform:rotate(-5deg) translateY(28px);transition-delay:.2s}
+.cert-reveal--scale{transform:scale(.88) translateY(20px);transition-delay:.4s}
+.cert-reveal.v{
+  opacity:1;
+  transform:none;
+}
+.cert-reveal--rotate.v{transform:none}
+.cert-reveal--scale.v{transform:none}
 
 /* ════════ CONTACT ════════ */
 #contact{padding:40px 0}
@@ -271,6 +342,8 @@ footer{padding:44px 64px;border-top:1px solid var(--bd);display:flex;align-items
   .fl{padding:40px 28px}
   .fr{padding:24px 28px}
   .cgrid{grid-template-columns:1fr;gap:40px}
+  .certs-bento-wrap{padding:0 24px}
+  .certs-bento{grid-template-columns:1fr;gap:14px;margin-top:40px}
   footer{flex-direction:column;gap:18px;text-align:center;padding:28px 24px}
   .sgrid{grid-template-columns:1fr 1fr}
 }
@@ -596,35 +669,40 @@ html[dir=rtl] .blv{direction:ltr}
 <div class="wrap"><div class="div"></div></div>
 
 <!-- ══════════ CERTS ══════════ -->
-<section id="certs">
-  <div class="wrap">
+<section id="certs" class="certs-zone">
+  <div class="wrap certs-header">
     <div class="sl ai" data-i18n="certs-label">Credentials</div>
     <h2 class="st ai" data-i18n="certs-heading">Certificates &<br><span class="gr">Training</span></h2>
   </div>
-  <div style="max-width:1200px;margin:0 auto;padding:0 64px" class="ai">
-    <div class="cw">
-      <div class="ct" id="ctrack">
-        <div class="cc">   
-          <img src="nvidia-logo-vert.svg" style="height: 32px; width: auto; filter: brightness(0) invert(1);" alt="NVIDIA">
-          <div class="cn" data-i18n="cert-nvidia-name">NVIDIA AI Certificate</div>
-          <div class="ciss" data-i18n="cert-nvidia-issuer">NVIDIA Corporation · ITI</div>
-          <div class="cdesc" data-i18n="cert-nvidia-desc">Certificate of Competency in Artificial Intelligence — covering AI fundamentals, machine learning, deep learning, and practical model applications in real-world scenarios.</div>
+  <div class="certs-bento-wrap">
+    <div class="certs-bento" id="certs-bento">
+      <article class="cc cert-reveal cert-reveal--up">
+        <div class="cert-logo-wrap cert-logo-wrap--nvidia">
+          <img src="nvidia-logo-vert.svg" alt="NVIDIA">
         </div>
-        <div class="cc" style="border-color:rgba(0,112,255,.2)">
-          <img src="DEBI-en.webp" style="height: 40px; width: auto; object-fit: contain;" alt="DEPI">
-          <div class="cn" data-i18n="cert-depi-name">Digital Egypt Pioneers Initiative</div>
-          <div class="ciss" data-i18n="cert-depi-issuer">DEPI · YAT Learning Center · Oct 2024 – Jun 2025</div>
-          <div class="cdesc" data-i18n="cert-depi-desc">9-month Graphic Design Track in Maadi, Cairo — Photoshop, Illustrator, InDesign, Dimension, Freelancing Fundamentals, and English for Communication.</div>
+        <div class="cn" data-i18n="cert-nvidia-name">NVIDIA AI Certificate</div>
+        <div class="ciss" data-i18n="cert-nvidia-issuer">NVIDIA Corporation · ITI</div>
+        <div class="cdesc" data-i18n="cert-nvidia-desc">Certificate of Competency in Artificial Intelligence — covering AI fundamentals, machine learning, deep learning, and practical model applications in real-world scenarios.</div>
+      </article>
+      <article class="cc cert-reveal cert-reveal--rotate">
+        <div class="cert-logo-wrap">
+          <img src="DEBI-en.webp" alt="DEPI">
         </div>
-        <div class="cc">
-          <img src="ColoredLogo.svg" style="height: 38px; width: auto; object-fit: contain;" alt="ITI">
-          <div class="cn" data-i18n="cert-iti-name">ITI Professional Certificate</div>
-          <div class="ciss" data-i18n="cert-iti-issuer">Information Technology Institute · Egypt</div>
-          <div class="cdesc" data-i18n="cert-iti-desc">Professional certification from Egypt's premier IT training institution, validating advanced technical and design competencies at national standard.</div>
+        <div class="cn" data-i18n="cert-depi-name">Digital Egypt Pioneers Initiative</div>
+        <div class="ciss" data-i18n="cert-depi-issuer">DEPI · YAT Learning Center · Oct 2024 – Jun 2025</div>
+        <div class="cdesc cdesc--depi" data-i18n="cert-depi-desc" data-i18n-certs-desc="cert-depi-desc">9-month Graphic Design Track in Maadi, Cairo — Photoshop, Illustrator, InDesign, Dimension, Freelancing Fundamentals, and English for Communication.</div>
+      </article>
+      <article class="cc cert-reveal cert-reveal--scale">
+        <div class="cert-logo-wrap">
+          <img src="ITI-logo.png" alt="ITI" onerror="this.onerror=null;this.src='ColoredLogo.svg'">
         </div>
-      </div>
+        <div class="cn" data-i18n="cert-iti-name">ITI Professional Certificate</div>
+        <div class="ciss" data-i18n="cert-iti-issuer">Information Technology Institute · Egypt</div>
+        <div class="cdesc" data-i18n="cert-iti-desc">Professional certification from Egypt's premier IT training institution, validating advanced technical and design competencies at national standard.</div>
+      </article>
     </div>
   </div>
+
 </section>
 
 <div class="wrap"><div class="div"></div></div>
@@ -777,8 +855,21 @@ document.querySelectorAll('.bp,.bs').forEach(b=>{
   b.addEventListener('mouseleave',()=>b.style.transform='');
 });
 
-// CERTS
-function scrollCerts(d){document.getElementById('ctrack').scrollBy({left:d,behavior:'smooth'})}
+// CERTS — bento card reveal (staggered)
+(function(){
+  const certObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('v');
+        certObs.unobserve(e.target);
+      }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -5% 0px'});
+  document.querySelectorAll('.cert-reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight*.92)el.classList.add('v');
+    else certObs.observe(el);
+  });
+})();
 
 // MOBILE MENU
 function tgMenu(){
@@ -834,176 +925,98 @@ window.addEventListener('load',()=>{
 <script>
 /* ─── Translation dictionary ─────────────────────────── */
 const i18n = {
-  en: {
-    /* meta */
-    'page-title':        'Seif Osama — Graphic Designer',
-    /* loader */
-    'loader-label':      'Loading Portfolio',
-    /* nav */
-    'nav-about':         'About',
-    'nav-skills':        'Skills',
-    'nav-certs':         'Certs',
-    'nav-contact':       'Contact',
-    /* hero */
-    'hero-badge':        'Available for Freelance',
-    'hero-role':         'Graphic Designer',
-    'hero-tagline':      '"Precision in Logic. Excellence in Design."',
-    'hero-desc':         'I craft visual identities that communicate before words do — blending structured technical thinking with creative vision. From brand systems and packaging to 3D product renders.',
-    'btn-behance':       'View Behance',
-    'btn-contact':       'Contact Me',
-    'btn-cv':            'Download CV',
-    'scroll-hint':       'Scroll',
-    /* about */
-    'about-label':       'About Me',
-    'about-heading':     'Designer with a<br><span class="gr">Technical Edge</span>',
-    'about-p1':          'I\'m <strong>Seif Osama</strong> — a graphic designer and <strong>Computer Science &amp; Statistics student at Helwan University</strong>, graduating July 2026. Where most creatives approach design as pure art, I treat it as a system: structured, precise, measurable.',
-    'about-p2':          'My work spans <strong>brand identity, packaging, logo design</strong> and <strong>3D product visualization</strong>. Trained through Egypt\'s Digital Egypt Pioneers Initiative (DEPI), I\'ve mastered the full Adobe suite — turning concepts into visual narratives that resonate and convert.',
-    'about-p3':          'My <strong>CS background</strong> means I read data, think algorithmically, and approach problems with rigor — a rare combination in the creative world. I don\'t just design beautifully. I design <em>intelligently</em>.',
-    'about-badge-lbl':   'Years Designing',
-    'stat-projects':     'Projects Delivered',
-    'stat-certs':        'Certificates',
-    'stat-tools':        'Adobe Tools',
-    'tag-brand':         'Brand Identity',
-    'tag-image':         'Image Manipulation',
-    'tag-social':        'Social Media Designs',
-    'tag-pack':          'Packaging Design',
-    'tag-logo':          'Logo Design',
-    'tag-ai':            'AI Skills',
-    /* skills */
-    'skills-label':      'Expertise',
-    'skills-heading':    'Skills &<br><span class="gr">Capabilities</span>',
-    'bc-core-badge':     'Core',
-    'bc-brand-title':    'Brand Identity Design',
-    'bc-brand-desc':     'Crafting cohesive visual identities — from logo systems and typography hierarchies to full brand guidelines. Every touchpoint aligned, every element intentional. Built to be instantly recognizable and emotionally resonant across every format and scale.',
-    'bc-pack-title':     'Packaging Design',
-    'bc-pack-desc':      'Structural and visual packaging that sells on shelf and screens. From dielines to 3D renders — packaging with purpose and precision.',
-    'bc-logo-title':     'Logo Design',
-    'bc-logo-desc':      'Timeless marks built on geometry, intent and precision. Scalable from favicon to billboard — vectors that carry meaning at every size.',
-    'bc-ps-title':       'Adobe Photoshop',
-    'bc-ps-desc':        'Retouching, compositing, digital illustration, visual effects',
-    'bc-ai-title':       'Adobe Illustrator',
-    'bc-ai-desc':        'Vector design, logos, branding assets, illustration systems',
-    'bc-id-title':       'Adobe InDesign',
-    'bc-id-desc':        'Print layouts, editorial design, magazines, reports',
-    'bc-dn-title':       'Adobe Dimension · 3D Mockups',
-    'bc-dn-desc':        'Photorealistic product visualizations and packaging renders. Lighting, materials, and depth — bringing 2D designs into immersive three-dimensional life.',
-    'bc-sm-title':       'Social Media Design',
-    'bc-sm-desc':        'Scroll-stopping content — consistent, on-brand, built for engagement.',
-    'bc-fe-title':       'AI-Assisted Front-End',
-    'bc-fe-desc':        'UI/UX design with AI-enhanced workflows — bridging design and implementation.',
-    'bc-cp-title':       'Creative Problem Solving',
-    'bc-cp-desc':        'Translating complex briefs into elegant solutions through structured creative thinking.',
-    /* certs */
-    'certs-label':       'Credentials',
-    'certs-heading':     'Certificates &<br><span class="gr">Training</span>',
-    'cert-nvidia-name':  'NVIDIA AI Certificate',
-    'cert-nvidia-issuer':'NVIDIA Corporation · ITI',
-    'cert-nvidia-desc':  'Certificate of Competency in Artificial Intelligence — covering AI fundamentals, machine learning, deep learning, and practical model applications in real-world scenarios.',
-    'cert-depi-name':    'Digital Egypt Pioneers Initiative',
-    'cert-depi-issuer':  'DEPI · YAT Learning Center · Oct 2024 – Jun 2025',
-    'cert-depi-desc':    '9-month Graphic Design Track in Maadi, Cairo — Photoshop, Illustrator, InDesign, Dimension, Freelancing Fundamentals, and English for Communication.',
-    'cert-iti-name':     'ITI Professional Certificate',
-    'cert-iti-issuer':   'Information Technology Institute · Egypt',
-    'cert-iti-desc':     'Professional certification from Egypt\'s premier IT training institution, validating advanced technical and design competencies at national standard.',
-    /* contact */
-    'contact-label':     'Get In Touch',
-    'contact-heading':   'Let\'s Work<br><span class="gr">Together.</span>',
-    'contact-sub':       'Open to freelance projects, brand collaborations, and creative opportunities. Let\'s build something exceptional that lasts.',
-    'contact-email-lbl': 'Email',
-    'contact-wa-lbl':    'WhatsApp',
-    'contact-li-lbl':    'LinkedIn',
-    'social-find':       'Find me on',
-    'cv-lbl':            'Download CV',
-    'cv-sub':            'Full resume with education, skills, training, and project experience.',
-    'cv-btn':            'Download CV — PDF',
-    /* footer */
-    'footer-copy':       '© 2025 Seif Osama . All rights reserved.',
-  },
+  dict: {
+    /* meta & loader (HTML bindings) */
+    'page-title':        { en: 'Seif Osama — Graphic Designer', ar: 'سيف أسامة — مصمم جرافيك ومطور برمجيات' },
+    'loader-label':      { en: 'Loading Portfolio', ar: 'جاري التحميل ' },
 
-  ar: {
-    /* meta */
-    'page-title':        'سيف أسامة — مصمم جرافيك',
-    /* loader */
-    'loader-label':      'جاري التحميل',
-    /* nav */
-    'nav-about':         'من أنا',
-    'nav-skills':        'مهاراتي',
-    'nav-certs':         'الشهادات',
-    'nav-contact':       'تواصل معي',
-    /* hero */
-    'hero-badge':        'متاح للعمل الحر',
-    'hero-role':         'مصمم جرافيك',
-    'hero-tagline':      '"دقة في التفكير .. تميز في التصميم"',
-    'hero-desc':         'بصمم هويات بصرية بتتكلم قبل ما الكلام يجي — بدمج التفكير التقني المنظم مع الرؤية الإبداعية. من أنظمة البراند والتغليف لحد المنتجات ثلاثية الأبعاد.',
-    'btn-behance':       'شوف أعمالي على Behance',
-    'btn-contact':       'كلمني',
-    'btn-cv':            'حمّل السيرة الذاتية',
-    'scroll-hint':       'اسكرول',
-    /* about */
-    'about-label':       'من أنا',
-    'about-heading':     'مصمم بعقل<br><span class="gr">تقني مميز</span>',
-    'about-p1': 'أنا <strong>سيف أسامة</strong> — مصمم جرافيك وطالب في <strong>كلية العلوم جامعة حلوان قسم الإحصاء وعلوم الحاسب</strong>، متخرج يوليو 2026. أنا بشوف التصميم مش مجرد فن — ده نظام: منطقي، دقيق، وقابل للقياس.',
-    'about-p2':          'شغلي بيشمل <strong>الهوية البصرية، التغليف، تصميم الشعارات</strong> و<strong>التصور ثلاثي الأبعاد للمنتجات</strong>. اتدربت في مبادرة رواد مصر الرقمية (DEPI) واتقنت أدوات Adobe  — بحول الأفكار لقصص بصرية بتأثر وبتنجح.',
-    'about-p3':          'خلفيتي في <strong>علوم الحاسب</strong> خلّتني أقرا البيانات، أفكر بمنطق اكتر، وأتعامل مع المشاكل بدقة — مزيج نادر في عالم الإبداع. أنا مش بس بصمم حلو. أنا بصمم <em>بذكاء</em>.',
-    'about-badge-lbl':   'سنوات خبرة',
-    'stat-projects':     'مشاريع',
-    'stat-certs':        'شهادات',
-    'stat-tools':        'أدوات Adobe',
-    'tag-brand':         'هوية بصرية',
-    'tag-image':         'تعديل الصور',
-    'tag-social':        'تصميم سوشيال ميديا',
-    'tag-pack':          'تصميم التغليف',
-    'tag-logo':          'تصميم شعارات',
-    'tag-ai':            'مهارات AI',
-    /* skills */
-    'skills-label':      'تخصصاتي',
-    'skills-heading':    'المهارات &<br><span class="gr">القدرات</span>',
-    'bc-core-badge':     'أساسي',
-    'bc-brand-title':    'تصميم الهوية البصرية',
-    'bc-brand-desc':     'بناء هويات بصرية متماسكة — من أنظمة الشعارات وتسلسل الخطوط لحد الدليل الكامل للعلامة التجارية. كل نقطة تواصل متناسقة، وكل عنصر مقصود. شغل يخلّي البراند يتعرف عليه على طول ويأثر في صاحبه.',
-    'bc-pack-title':     'تصميم التغليف',
-    'bc-pack-desc':      'تغليف بصري وهيكلي بيبيع على الرف والشاشة. من رسومات القطع لحد التصور ثلاثي الأبعاد — تغليف فيه هدف ودقة.',
-    'bc-logo-title':     'تصميم الشعارات',
-    'bc-logo-desc':      'علامات خالدة مبنية على هندسة وقصد ودقة. قابلة للتكبير من الأيقونة الصغيرة لحد اللافتة الكبيرة — شعارات بتحمل معنى في كل حجم.',
-    'bc-ps-title':       'Adobe Photoshop',
-    'bc-ps-desc':        'تعديل الصور، التركيب، الرسم الرقمي، المؤثرات البصرية',
-    'bc-ai-title':       'Adobe Illustrator',
-    'bc-ai-desc':        'تصميم فيكتور، شعارات، أصول البراند، أنظمة الرسم',
-    'bc-id-title':       'Adobe InDesign',
-    'bc-id-desc':        'تصميم المطبوعات، التصميم التحريري، المجلات، التقارير',
-    'bc-dn-title':       'Adobe Dimension · موكاب ثلاثي الأبعاد',
-    'bc-dn-desc':        'تصور المنتجات والتغليف بشكل فوتوريالستيك. إضاءة، مواد، وعمق — بنقل التصميمات ثنائية الأبعاد لعالم ثلاثي مبهر.',
-    'bc-sm-title':       'تصميم السوشيال ميديا',
-    'bc-sm-desc':        'محتوى بيوقف الإصبع — متناسق، على البراند، مصمم للتفاعل.',
-    'bc-fe-title':       'فرونت إند بمساعدة AI',
-    'bc-fe-desc':        'تصميم UI/UX بسيرفورك محسّن بالذكاء الاصطناعي — بربط التصميم بالتنفيذ.',
-    'bc-cp-title':       'حل المشكلات الإبداعي',
-    'bc-cp-desc':        'تحويل البريفات المعقدة لحلول أنيقة من خلال تفكير إبداعي منهجي.',
-    /* certs */
-    'certs-label':       'الشهادات',
-    'certs-heading':     'شهاداتي &<br><span class="gr">التدريب</span>',
-    'cert-nvidia-name':  'شهادة NVIDIA في الذكاء الاصطناعي',
-    'cert-nvidia-issuer':'NVIDIA Corporation · ITI',
-    'cert-nvidia-desc':  'شهادة كفاءة في الذكاء الاصطناعي — بتغطي أساسيات AI، تعلم الآلة، التعلم العميق، وتطبيقات النماذج في السيناريوهات الحقيقية.',
-    'cert-depi-name':    'مبادرة رواد مصر الرقمية',
-    'cert-depi-issuer':  'DEPI · مركز YAT التعليمي · أكتوبر 2024 – يونيو 2025',
-    'cert-depi-desc':    'مسار تصميم جرافيك لمدة 9 أشهر في المعادي، القاهرة — Photoshop وIllustrator وInDesign وDimension وأساسيات الفريلانس والإنجليزية للتواصل المهني.',
-    'cert-iti-name':     'شهادة ITI المهنية',
-    'cert-iti-issuer':   'معهد تكنولوجيا المعلومات · مصر',
-    'cert-iti-desc':     'شهادة مهنية من أعرق مؤسسات التدريب التقني في مصر، بتُثبت الكفاءة التقنية والتصميمية على أعلى مستوى وطني.',
-    /* contact */
-    'contact-label':     'تواصل معايا',
-    'contact-heading':   'خلينا<br><span class="gr">نشتغل سوا.</span>',
-    'contact-sub':       'متاح لمشاريع الفريلانس، كلمني ونبني حاجة مميزة تفرق.',
-    'contact-email-lbl': 'البريد الإلكتروني',
-    'contact-wa-lbl':    'واتساب',
-    'contact-li-lbl':    'لينكد إن',
-    'social-find':       'لاقيني على',
-    'cv-lbl':            'حمّل السيرة الذاتية',
-    'cv-sub':            'السيرة الذاتية الكاملة فيها التعليم والمهارات والتدريب وتفاصيل المشاريع.',
-    'cv-btn':            'تحميل السيرة الذاتية — PDF',
-    /* footer */
-    'footer-copy':       '© 2025 سيف أسامة. جميع الحقوق محفوظة.',
+    /* Navigation */
+    'nav-about':         { en: 'About', ar: 'عني' },
+    'nav-skills':        { en: 'Skills', ar: 'الخبرات' },
+    'nav-certs':         { en: 'Credentials', ar: 'الشهادات' },
+    'nav-contact':       { en: 'Contact', ar: 'تواصل معي' },
+
+    /* Hero Section */
+    'hero-title':        { en: 'Precision in Logic.<br>Excellence in Design.', ar: 'دقة في التفكير.<br>تميز في التصميم' },
+    'hero-tagline':      { en: 'Precision in Logic.<br>Excellence in Design.', ar: 'دقة في التفكير<br>تميز في التصميم' },
+    'hero-sub':          { en: 'Junior Graphic Designer & Software Developer crafting seamless cinematic digital identities.', ar: 'مصمم جرافيك ومطور برمجيات.. أدمج بين منطق البرمجة وفخامة التصميم لبناء هويات رقمية سينمائية متكاملة.' },
+    'hero-badge':        { en: 'Available for Freelance', ar: 'متاح للمشاريع الحرة' },
+    'hero-role':         { en: 'Graphic Designer', ar: 'مصمم جرافيك' },
+    'hero-desc':         { en: 'I craft visual identities that communicate before words do — blending structured technical thinking with creative vision. From brand systems and packaging to 3D product renders.', ar: 'أصمم هويات بصرية تترك انطباعاً فورياً و أجمع بين التفكير الهندسي المنظم والرؤية الفنية، بدءاً من بناء الأنظمة البصرية الكاملة والتغليف وحتى النماذج ثلاثية الأبعاد (3D Renders).' },
+    'btn-behance':       { en: 'View Behance', ar: 'معرض أعمالي على Behance' },
+    'btn-contact':       { en: 'Contact Me', ar: 'تواصل معي' },
+    'btn-cv':            { en: 'Download CV', ar: 'تحميل السيرة الذاتية' },
+    'scroll-hint':       { en: 'Scroll', ar: 'التمرير لأسفل' },
+
+    /* About Section */
+    'about-label':       { en: 'About Me', ar: 'لمحة عني' },
+    'about-heading':     { en: 'Designer with a<br><span class="gr">Technical Edge</span>', ar: 'مصمم برؤية<br><span class="gr">فنية مميزة</span>' },
+    'about-p1':          { en: 'I\'m <strong>Seif Osama</strong> — a graphic designer and <strong>Computer Science & Statistics student</strong>, graduating July 2026. Where most creatives approach design as pure art, I treat it as a system: structured, precise, measurable.', ar: 'أنا <strong>سيف أسامة</strong> — مصمم جرافيك ومطور برمجيات. في الوقت الذي يتعامل فيه أغلب المصممين مع التصميم مجرد، أتعامل معه بنظام منهجي: مدروس، دقيق، وواضح الأهداف.' },
+    'about-p2':          { en: 'My work spans <strong>brand identity, packaging, logo design</strong> and <strong>3D product visualization</strong>. Trained through Egypt\'s Digital Egypt Pioneers Initiative (DEPI), I\'ve mastered the full Adobe suite — turning concepts into visual narratives that resonate and convert.', ar: 'يرتكز شغفي على <strong>تطوير الهويات البصرية الكاملة، تصميم التغليف، و تصميم المنتجات ثلاثية الأبعاد</strong> طورت مهاراتي عبر منحة رواد مصر الرقمية  (DEPI)، مما مكنني من تعلم جميع برامج Adobe وتحويل الأفكار إلى قصص بصرية تخدم أهداف الأعمال.' },
+    'about-p3':          { en: 'My <strong>CS background</strong> means I read data, think algorithmically, and approach problems with rigor — a rare combination in the creative world. I don\'t just design beautifully. I design <em>intelligently</em>.', ar: 'تمنحني خلفيتي في <strong>علوم الحاسب والإحصاء</strong> قدرة فريدة على تحليل البيانات والابتكار لحل المشكلات. كما أدمج أدوات <strong>الذكاء الاصطناعي المتطورة في كامل سير العمل</strong> لضمان سرعة التنفيذ والوصول إلى نتائج احترافية ومقنعة في سوق العمل الحالي.' },
+    'about-badge-lbl':   { en: 'Years Designing', ar: 'سنوات الخبرة' },
+    'stat-projects':     { en: 'Projects Delivered', ar: 'مشاريع منجزة' },
+    'stat-certs':        { en: 'Certificates', ar: 'شهادات معتمدة' },
+    'stat-tools':        { en: 'Adobe Tools', ar: 'أدوات احترافية' },
+    'tag-brand':         { en: 'Brand Identity', ar: 'الهوية البصرية' },
+    'tag-image':         { en: 'Image Manipulation', ar: 'معالجة الصور' },
+    'tag-social':        { en: 'Social Media Designs', ar: 'تصاميم التواصل' },
+    'tag-pack':          { en: 'Packaging Design', ar: 'تصميم التغليف' },
+    'tag-logo':          { en: 'Logo Design', ar: 'تصميم الشعارات' },
+    'tag-ai':            { en: 'AI Skills', ar: 'الذكاء الاصطناعي' },
+
+    /* Skills Bento Box */
+    'skills-label':      { en: 'Expertise', ar: 'التخصصات' },
+    'skills-heading':    { en: 'Skills &<br><span class="gr">Capabilities</span>', ar: 'المهارات &<br><span class="gr">القدرات الاحترافية</span>' },
+    'bc-core-badge':     { en: 'Core', ar: 'أساسي' },
+    'bc-brand-title':    { en: 'Brand Identity Design', ar: 'تصميم الهويات البصرية والشعارات' },
+    'bc-brand-desc':     { en: 'Crafting cohesive visual identities — from logo systems and typography hierarchies to full brand guidelines. Every touchpoint aligned, every element intentional. Built to be instantly recognizable and emotionally resonant across every format and scale.', ar: 'بناء أنظمة بصرية متكاملة للعلامات التجارية — بدءاً من هندسة الشعار واختيار الخطوط والألوان وحتى تسليم أدلة الهوية (Brand Guidelines). كل تفصيلة مصممة بهدف لخلق رابط قوي ومستدام مع العميل.' },
+    'bc-pack-title':     { en: 'Packaging Design', ar: 'تصميم التغليف والعلب' },
+    'bc-pack-desc':      { en: 'Structural and visual packaging that sells on shelf and screens. From dielines to 3D renders — packaging with purpose and precision.', ar: 'تصميم الغلاف الخارجي للمنتجات بأسلوب يبرزها على الرفوف وخلف الشاشات. نهتم بجميع المراحل من رسم المقاسات (Dielines) وحتى النماذج المجسمة النهائية.' },
+    'bc-logo-title':     { en: 'Logo Design', ar: 'هندسة الشعارات' },
+    'bc-logo-desc':      { en: 'Timeless marks built on geometry, intent and precision. Scalable from favicon to billboard — vectors that carry meaning at every size.', ar: 'ابتكار شعارات فريدة مبنية على قواعد هندسية دقيقة وقابلة للتطوير، لتلائم الاستخدام كأيقونة صغيرة أو على اللوحات الإعلانية الضخمة دون فقدان الجودة.' },
+    'bc-ps-title':       { en: 'Adobe Photoshop', ar: 'أدوبي فوتوشوب' },
+    'bc-ps-desc':        { en: 'Retouching, compositing, digital illustration, visual effects', ar: 'دمج الصور الاحترافي، تعديل الألوان المتقدم، تصميم البوسترات، والمؤثرات البصرية.' },
+    'bc-ai-title':       { en: 'Adobe Illustrator', ar: 'أدوبي اليستريتور' },
+    'bc-ai-desc':        { en: 'Vector design, logos, branding assets, illustration systems', ar: 'رسم الفيكتور، بناء الشعارات والأيقونات، وتجهيز الملفات للطباعة بدقة فائقة.' },
+    'bc-id-title':       { en: 'Adobe InDesign', ar: 'أدوبي إن ديزاين' },
+    'bc-id-desc':        { en: 'Print layouts, editorial design, magazines, reports', ar: 'تنسيق المطبوعات الرقمية، المجلات، والملفات التعريفية متعددة الصفحات.' },
+    'bc-dn-title':       { en: 'Adobe Dimension · 3D Mockups', ar: 'أدوبي دايمنشن · موكاب 3D' },
+    'bc-dn-desc':        { en: 'Photorealistic product visualizations and packaging renders. Lighting, materials, and depth — bringing 2D designs into immersive three-dimensional life.', ar: 'تجسيد المنتجات والتغليف بشكل واقعي للغاية عبر محاكاة الإضاءة والخامات، وتحويل التصاميم ثنائية الأبعاد إلى بيئة مجسمة تخدم العرض والبيع.' },
+    'bc-sm-title':       { en: 'Social Media Design', ar: 'تصاميم منصات التواصل' },
+    'bc-sm-desc':        { en: 'Scroll-stopping content — consistent, on-brand, built for engagement.', ar: 'صناعة محتوى بصري لافت وسط التصفح السريع، متناسق تماماً مع هوية العلامة ومصمم لزيادة التفاعل.' },
+    'bc-fe-title':       { en: 'AI-Augmented Creative Workflow', ar: 'سير عمل مدعوم بالذكاء الاصطناعي' },
+    'bc-fe-desc':        { en: 'Utilizing cutting-edge AI tools for rapid prototyping, creative asset generation, and highly efficient workflows.', ar: 'تطويع أحدث تقنيات الـ AI لتسريع النماذج الأولية، وتوليد الأصول الإبداعية لإنجاز المشاريع بجودة عالية ووقت قياسي.' },
+    'bc-cp-title':       { en: 'Full-Stack Prototyping', ar: 'تطوير الواجهات والباك إند' },
+    'bc-cp-desc':        { en: 'Building fast, dynamic web applications combining design logic with robust backend integration (Next.js / Node.js).', ar: 'بناء تطبيقات ومواقع سريعة وديناميكية، نجمع فيها بين واجهات الـ UI العصرية والربط البرمجي (Next.js & Node.js).' },
+
+    /* Credentials Section */
+    'certs-label':       { en: 'Credentials', ar: 'الاعتمادات' },
+    'certs-heading':     { en: 'Certificates &<br><span class="gr">Training</span>', ar: 'الشهادات والتدريب<br><span class="gr">المهني</span>' },
+    'cert-nvidia-name':  { en: 'NVIDIA AI Certificate', ar: 'شهادة الذكاء الاصطناعي من NVIDIA' },
+    'cert-nvidia-issuer':{ en: 'NVIDIA Corporation · ITI', ar: 'شركة NVIDIA بالتعاون مع معهد تكنولوجيا المعلومات' },
+    'cert-nvidia-desc':  { en: 'Certificate of Competency in Artificial Intelligence — covering AI fundamentals, machine learning, deep learning, and practical model applications in real-world scenarios.', ar: 'شهادة كفاءة تغطي أساسيات الذكاء الاصطناعي، تعلم الآلة (Machine Learning)، والتعلم العميق، مع التطبيق العملي في سيناريوهات واقعية.' },
+    'cert-depi-name':    { en: 'Digital Egypt Pioneers Initiative', ar: 'منحة رواد مصر الرقمية (DEPI)' },
+    'cert-depi-issuer':  { en: 'DEPI · YAT Learning Center · Oct 2024 – Jun 2025', ar: 'وزارة الاتصالات · مركز YAT · أكتوبر 2024 – يونيو 2025' },
+    'cert-depi-desc':    { en: '9-month Graphic Design Track in Maadi, Cairo — Photoshop, Illustrator, InDesign, Dimension, Freelancing Fundamentals, and English for Communication.', ar: 'دبلومة مكثفة لمدة 9 أشهر في مسار التصميم الجرافيكي - شملت دراسة Photoshop, Illustrator, InDesign, Dimension وأساسيات العمل الحر والتواصل المهني.' },
+    'cert-iti-name':     { en: 'ITI Professional Certificate', ar: 'الشهادة الاحترافية من معهد ITI' },
+    'cert-iti-issuer':   { en: 'Information Technology Institute · Egypt', ar: 'معهد تكنولوجيا المعلومات (ITI) · مصر' },
+    'cert-iti-desc':     { en: 'Professional certification from Egypt\'s premier IT training institution, validating advanced technical and design competencies at national standard.', ar: 'اعتماد احترافي من الصرح التقني الأول في مصر، لتوثيق المهارات المتقدمة وفقاً للمعايير القومية للعمل.' },
+
+    /* Contact Section */
+    'contact-label':     { en: 'Get In Touch', ar: 'تواصل معي' },
+    'contact-heading':   { en: 'Let\'s Work<br><span class="gr">Together.</span>', ar: 'لنعمل معاً<br><span class="gr">على مشروعك القادم</span>' },
+    'contact-sub':       { en: 'Open to freelance projects, brand collaborations, and creative opportunities. Let\'s build something exceptional that lasts.', ar: 'متاح للمشاريع الحرة (Freelance)، بناء الهويات البصرية، والتعاون الإبداعي. لنبتكر معاً شيئاً استثنائياً يترك أثراً مستداماً.' },
+    'contact-email-lbl': { en: 'Email', ar: 'البريد الإلكتروني' },
+    'contact-wa-lbl':    { en: 'WhatsApp', ar: 'واتساب' },
+    'contact-li-lbl':    { en: 'LinkedIn', ar: 'لينكد إن' },
+    'social-find':       { en: 'Find me on', ar: 'تابعني على منصات التواصل' },
+    'cv-lbl':            { en: 'Download CV', ar: 'السيرة الذاتية' },
+    'cv-sub':            { en: 'Full resume with education, skills, training, and project experience.', ar: 'الملف الكامل الذي يشمل تفاصيل المهارات، التدريب المهني، وخبرات المشاريع السابقة.' },
+    'cv-btn':            { en: 'Download CV — PDF', ar: 'تحميل السيرة الذاتية — PDF' },
+
+    /* Footer */
+    'footer-copy':       { en: '© 2025 Seif Osama . All rights reserved.', ar: '© 2025 سيف أسامة. جميع الحقوق محفوظة.' }
   }
 };
 
@@ -1013,20 +1026,20 @@ let currentLang = localStorage.getItem('so-lang') || 'en';
 /* ─── Core apply function ────────────────────────────── */
 function applyLang(lang) {
   const html = document.documentElement;
-  const dict = i18n[lang];
+  const dict = i18n.dict;
 
   /* Direction & lang attribute — instant, no flash */
   html.setAttribute('lang', lang);
   html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
 
   /* Page title */
-  document.title = dict['page-title'];
+  if (dict['page-title']) document.title = dict['page-title'][lang];
 
   /* All tagged elements */
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (dict[key] !== undefined) {
-      el.innerHTML = dict[key];
+    if (dict[key] && dict[key][lang] !== undefined) {
+      el.innerHTML = dict[key][lang];
     }
   });
 
